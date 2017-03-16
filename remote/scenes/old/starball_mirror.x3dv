@@ -1,0 +1,58 @@
+#X3D V3.0 utf8
+
+PROFILE Full
+
+Viewpoint {
+  position 0 0 3
+  orientation -0.001 0.0 0.0 0.001
+  fieldOfView 0.785398
+}
+
+PointLight {
+   location 0 0 3
+   color 1 1 1
+}
+
+PointLight {
+   location 0 0 -3
+   color 3 3 3
+}
+
+Transform {
+   rotation 1 0.4 0 1.570796
+   scale 1 1 1
+   children Shape {
+      appearance Appearance {
+	 shaders PackagedShader {
+	    field SFBool vectorize TRUE
+	    field SFBool specialize TRUE
+
+	    exposedField SFFloat Ka 1.0
+	    exposedField SFFloat Kd 0.5
+	    exposedField SFFloat Ks 0.5
+	    exposedField SFFloat roughness 0.1
+
+	    url "rtfact:JIT:StarballShader.bc"
+	 }
+	 material Material { }
+      }
+      geometry Sphere {
+      }
+   }
+}
+Transform {
+   scale 4 4 4
+   children Shape {
+      appearance Appearance {
+	 shaders PackagedShader {
+	    field SFBool vectorize TRUE
+	    field SFBool specialize TRUE
+      exposedField SFFloat maxDepth 2.0
+	    url "rtfact:JIT:MirrorShader.bc"
+	 }
+	 material Material { }
+      }
+      geometry Box {
+      }
+   }
+}

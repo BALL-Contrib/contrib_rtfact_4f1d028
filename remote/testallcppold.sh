@@ -1,0 +1,30 @@
+echo "TESTING SHADERS..."
+rtsgRTremoteTest scenes/old/unified_spheres/scalar_brick.x3dv
+rtsgRTremoteTest scenes/old/unified_spheres/brick.x3dv
+rtsgRTremoteTest scenes/old/unified_spheres/scalar_checker.x3dv
+rtsgRTremoteTest scenes/old/unified_spheres/checker.x3dv
+rtsgRTremoteTest scenes/old/unified_spheres/scalar_glass.x3dv
+rtsgRTremoteTest scenes/old/unified_spheres/glass.x3dv
+rtsgRTremoteTest scenes/old/unified_spheres/scalar_granite.x3dv
+rtsgRTremoteTest scenes/old/unified_spheres/granite.x3dv
+rtsgRTremoteTest scenes/old/unified_spheres/scalar_mandelbrot.x3dv
+rtsgRTremoteTest scenes/old/unified_spheres/mandelbrot.x3dv
+rtsgRTremoteTest scenes/old/unified_spheres/scalar_parquetplank.x3dv
+rtsgRTremoteTest scenes/old/unified_spheres/parquetplank.x3dv
+rtsgRTremoteTest scenes/old/unified_spheres/scalar_phong.x3dv
+rtsgRTremoteTest scenes/old/unified_spheres/phong.x3dv
+rtsgRTremoteTest scenes/old/unified_spheres/scalar_screen_aa.x3dv
+rtsgRTremoteTest scenes/old/unified_spheres/screen_aa.x3dv
+rtsgRTremoteTest scenes/old/unified_spheres/scalar_starball.x3dv
+rtsgRTremoteTest scenes/old/unified_spheres/starball.x3dv
+rtsgRTremoteTest scenes/old/unified_spheres/scalar_whitted.x3dv
+rtsgRTremoteTest scenes/old/unified_spheres/whitted.x3dv
+rtsgRTremoteTest scenes/old/unified_spheres/scalar_wood.x3dv
+rtsgRTremoteTest scenes/old/unified_spheres/wood.x3dv
+rtsgRTremoteTest scenes/old/unified_spheres/scalar_texture.x3dv
+rtsgRTremoteTest scenes/old/unified_spheres/texture.x3dv
+rtsgRTremoteTest scenes/old/unified_spheres/scalar_texture_mix.x3dv
+rtsgRTremoteTest scenes/old/unified_spheres/texture_mix.x3dv
+echo ""
+echo "TESTING OF SHADERS FINISHED!"
+echo ""

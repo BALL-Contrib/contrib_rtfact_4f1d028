@@ -1,0 +1,78 @@
+#X3D V3.0 utf8
+
+PROFILE Full
+
+Viewpoint {
+  position 0 0 4
+  orientation -0.001 0.0 0.0 0.001
+  fieldOfView 0.785398
+}
+
+PointLight {
+   location 0 0 3
+   color 0.1 0.1 0.1
+}
+
+PointLight {
+  location 0 0 -3
+  color 3 3 3
+}
+
+Transform {
+   rotation 1 0.4 0 1.570796
+   #scale 0.5 0.5 0.5
+   scale 0.8 0.8 0.8
+   children Shape {
+      appearance Appearance {
+	 shaders PackagedShader {
+	    field SFBool vectorize FALSE
+	    field SFBool specialize TRUE
+
+	    exposedField SFFloat eta 1.5 # index of refraction
+	    exposedField SFFloat Kr  0.8 # reflective coefficient
+	    exposedField SFFloat Kt  0.2 # transmissive coefficient
+	    exposedField SFFloat Ks  0.1 # specular coefficient
+	    exposedField SFFloat Kss   2 # specular exponent
+	    exposedField SFFloat Kd  0.5 # 
+      
+      exposedField SFFloat maxDepth 2.0
+
+	    url "rtfact:JIT:WhittedShader.bc"
+	 }
+	 material Material { }
+      }
+      geometry Sphere {
+      }
+   }
+}
+
+Transform {
+   #scale 4 4 10
+   scale  4 4 4
+   children Shape {
+      appearance Appearance {
+	 shaders PackagedShader {
+	    field SFBool vectorize FALSE
+	    field SFBool specialize TRUE
+
+	    exposedField SFColor ambientColor 0.1 0.1 0.1
+	    exposedField SFColor diffuseColor 1 1 1
+	    exposedField SFColor specularColor 0.6 0.6 0.6
+	    exposedField SFFloat kg 0.9
+	    exposedField SFColor brickColor 1 .15 .14
+	    exposedField SFColor mortarColor .4 .4 .4
+	    exposedField SFFloat brickWidth 0.25
+	    exposedField SFFloat brickHeight 0.08
+	    exposedField SFFloat mortarThickness 0.01
+	    exposedField SFFloat s_scale 1
+	    exposedField SFFloat t_scale 1
+
+	    url "rtfact:JIT:BrickShader.bc"
+	 }
+	 material Material { }
+      }
+      geometry Box {
+      }
+   }
+}
+

@@ -1,0 +1,12 @@
+#define RTFACT_RTPIE_LIB
+
+#include "TwoLevelTracer/TLRayGenerationTask.hpp"
+
+RTFACT_RTPIE_NAMESPACE_BEGIN
+
+RTFACT_RTPIE_QI_START(TLRayGenerationTask)
+RTFACT_RTPIE_QI_ADD(IRayGenerationTask)
+RTFACT_RTPIE_QI_END
+
+
+RTFACT_RTPIE_NAMESPACE_END

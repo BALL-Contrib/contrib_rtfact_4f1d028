@@ -1,0 +1,86 @@
+#X3D V3.0 utf8
+
+PROFILE Full
+
+Viewpoint {
+  position 0 0 3
+  orientation -0.001 0.0 0.0 0.001
+  fieldOfView 0.785398
+}
+
+#PointLight {
+#   location 0 0 3
+#   color 3 3 3
+#}
+
+#PointLight {
+#   location 0 0 -3
+#   color 3 3 3
+#}
+
+#pointlight at viewpoint
+#PointLight {
+#   location 0 0 4
+#   color 0.2 0.2 0.2
+#}
+
+#pointlight in front of viewpoint
+PointLight {
+   location 0.5 0 3
+   color 0.8 0.8 0.8
+}
+
+#pointlight behind teapot
+PointLight {
+  location 2 0 -3
+  color 2 2 2
+}
+
+Transform {
+   children Shape {
+      appearance Appearance {
+	 shaders PackagedShader {
+	    field SFBool vectorize FALSE
+	    field SFBool specialize TRUE
+
+	    exposedField SFColor Cs 0.0 0.0 1.0
+	    exposedField SFColor specularcolor 1 0 0
+	    exposedField SFFloat Ka 0
+	    exposedField SFFloat Kd 0.1
+	    exposedField SFFloat Ks 0.8
+	    exposedField SFFloat roughness 0.1
+	    exposedField SFFloat density 0.20
+	    exposedField SFFloat frequency 20
+
+	    url "rtfact:JIT:ScreenAAShader.bc"
+	 }
+	 material Material { }
+      }
+      geometry Sphere {
+      }
+   }
+}
+
+Transform {
+   scale 4 4 4
+   children Shape {
+      appearance Appearance {
+	 shaders PackagedShader {
+	    field SFBool vectorize FALSE
+	    field SFBool specialize TRUE
+
+	    exposedField SFColor color 1.0 1.0 1.0
+
+	    exposedField SFFloat Ka 0.05
+	    exposedField SFFloat Kd 0.4
+	    exposedField SFFloat Ks 0.1
+	    exposedField SFFloat roughness 0.1
+
+	    url "rtfact:JIT:GraniteShader.bc"
+	 }
+	 material Material { }
+      }
+      geometry Box {
+      }
+   }
+}

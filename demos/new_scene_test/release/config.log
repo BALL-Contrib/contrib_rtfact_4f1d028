@@ -1,0 +1,292 @@
+file C:\uni\uray\rtfact-dev\demos\new_scene_test\builder\btools.py,line 780:
+	Configure(confdir = release\.sconf_temp)
+scons: Configure: Checking type sizes... 
+scons: Configure: "release\.sconf_temp\conftest_0.c" is up to date.
+scons: Configure: The original builder output was:
+  |release\.sconf_temp\conftest_0.c <-
+  |  |
+  |  |    #include <stdio.h>
+  |  |    int main(int argc, char **argv) {
+  |  |      printf("%i %i %i %i\n", sizeof(char), sizeof(short), sizeof(int), sizeof(long));
+  |  |      return 0;
+  |  |    }
+  |  |    
+  |
+scons: Configure: "release\.sconf_temp\conftest_0.obj" is up to date.
+scons: Configure: The original builder output was:
+  |cl /Forelease\.sconf_temp\conftest_0.obj /c release\.sconf_temp\conftest_0.c /nologo /arch:SSE2 /GR /O2 /Ob2 /TP /Ot /Oy /EHsc /MD /Zp16 /Zc:forScope /Gd /W1 /Zi /DNDEBUG /DIA32 /Isrc /IC:\uni\uray\rtfact-dev\include /IC:\lib\boost_1_37_0 /IC:\lib\SDL\include /IC:\lib\tbb\include /IC:\lib\glew\include
+  |
+scons: Configure: "release\.sconf_temp\conftest_0.exe" is up to date.
+scons: Configure: The original builder output was:
+  |link /nologo /MACHINE:X86 /SUBSYSTEM:CONSOLE /DEBUG /OUT:release\.sconf_temp\conftest_0.exe /LIBPATH:release\lib /LIBPATH:C:\lib\SDL\lib /LIBPATH:C:\lib\tbb\ia32\vc9\lib /LIBPATH:C:\lib\glew\lib release\.sconf_temp\conftest_0.obj
+  |
+scons: Configure: "release\.sconf_temp\conftest_0.exe.out" is up to date.
+scons: Configure: The original builder output was:
+  |release\.sconf_temp\conftest_0.exe > release\.sconf_temp\conftest_0.exe.out
+  |
+scons: Configure: "release\.sconf_temp\conftest_1.c" is up to date.
+scons: Configure: The original builder output was:
+  |release\.sconf_temp\conftest_1.c <-
+  |  |
+  |  |    #include <stdio.h>
+  |  |    int main(int argc, char **argv) {
+  |  |      printf("%i\n", sizeof(long long));
+  |  |      return 0;
+  |  |    }
+  |  |    
+  |
+scons: Configure: "release\.sconf_temp\conftest_1.obj" is up to date.
+scons: Configure: The original builder output was:
+  |cl /Forelease\.sconf_temp\conftest_1.obj /c release\.sconf_temp\conftest_1.c /nologo /arch:SSE2 /GR /O2 /Ob2 /TP /Ot /Oy /EHsc /MD /Zp16 /Zc:forScope /Gd /W1 /Zi /DNDEBUG /DIA32 /Isrc /IC:\uni\uray\rtfact-dev\include /IC:\lib\boost_1_37_0 /IC:\lib\SDL\include /IC:\lib\tbb\include /IC:\lib\glew\include
+  |
+scons: Configure: "release\.sconf_temp\conftest_1.exe" is up to date.
+scons: Configure: The original builder output was:
+  |link /nologo /MACHINE:X86 /SUBSYSTEM:CONSOLE /DEBUG /OUT:release\.sconf_temp\conftest_1.exe /LIBPATH:release\lib /LIBPATH:C:\lib\SDL\lib /LIBPATH:C:\lib\tbb\ia32\vc9\lib /LIBPATH:C:\lib\glew\lib release\.sconf_temp\conftest_1.obj
+  |
+scons: Configure: "release\.sconf_temp\conftest_1.exe.out" is up to date.
+scons: Configure: The original builder output was:
+  |release\.sconf_temp\conftest_1.exe > release\.sconf_temp\conftest_1.exe.out
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking platform endianness... 
+scons: Configure: "release\.sconf_temp\conftest_2.c" is up to date.
+scons: Configure: The original builder output was:
+  |release\.sconf_temp\conftest_2.c <-
+  |  |
+  |  |    #include <stdio.h>
+  |  |    int main(int argc, char **argv) {
+  |  |      // From Harbison&Steele, adopted from cmake
+  |  |      union
+  |  |      {
+  |  |        long l;
+  |  |        char c[sizeof (long)];
+  |  |      } u;
+  |  |      u.l = 1;
+  |  |      if (u.c[sizeof (long) - 1] == 1)
+  |  |        printf("big\n");
+  |  |      else
+  |  |        printf("little\n");
+  |  |      return 0;
+  |  |    }
+  |  |    
+  |
+scons: Configure: "release\.sconf_temp\conftest_2.obj" is up to date.
+scons: Configure: The original builder output was:
+  |cl /Forelease\.sconf_temp\conftest_2.obj /c release\.sconf_temp\conftest_2.c /nologo /arch:SSE2 /GR /O2 /Ob2 /TP /Ot /Oy /EHsc /MD /Zp16 /Zc:forScope /Gd /W1 /Zi /DNDEBUG /DIA32 /Isrc /IC:\uni\uray\rtfact-dev\include /IC:\lib\boost_1_37_0 /IC:\lib\SDL\include /IC:\lib\tbb\include /IC:\lib\glew\include
+  |
+scons: Configure: "release\.sconf_temp\conftest_2.exe" is up to date.
+scons: Configure: The original builder output was:
+  |link /nologo /MACHINE:X86 /SUBSYSTEM:CONSOLE /DEBUG /OUT:release\.sconf_temp\conftest_2.exe /LIBPATH:release\lib /LIBPATH:C:\lib\SDL\lib /LIBPATH:C:\lib\tbb\ia32\vc9\lib /LIBPATH:C:\lib\glew\lib release\.sconf_temp\conftest_2.obj
+  |
+scons: Configure: "release\.sconf_temp\conftest_2.exe.out" is up to date.
+scons: Configure: The original builder output was:
+  |release\.sconf_temp\conftest_2.exe > release\.sconf_temp\conftest_2.exe.out
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for SSE3 availability... 
+scons: Configure: (cached) no
+
+scons: Configure: Checking for libpng... 
+scons: Configure: "release\.sconf_temp\conftest_3.c" is up to date.
+scons: Configure: The original builder output was:
+  |release\.sconf_temp\conftest_3.c <-
+  |  |
+  |  |                #include <png.h>
+  |  |                int main(int argc, char **argv) { 
+  |  |                  png_create_read_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
+  |  |                  return 0;
+  |  |                }
+  |  |
+  |
+scons: Configure: Building "release\.sconf_temp\conftest_3.obj" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |cl /Forelease\.sconf_temp\conftest_3.obj /c release\.sconf_temp\conftest_3.c /nologo /arch:SSE2 /GR /O2 /Ob2 /TP /Ot /Oy /EHsc /MD /Zp16 /Zc:forScope /Gd /W1 /Zi /DNDEBUG /DIA32 /Isrc /IC:\uni\uray\rtfact-dev\include /IC:\lib\boost_1_37_0 /IC:\lib\SDL\include /IC:\lib\tbb\include /IC:\lib\glew\include
+  |
+scons: Configure: "release\.sconf_temp\conftest_4.c" is up to date.
+scons: Configure: The original builder output was:
+  |release\.sconf_temp\conftest_4.c <-
+  |  |
+  |  |                #include <libpng/png.h>
+  |  |                int main(int argc, char **argv) { 
+  |  |                  png_create_read_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
+  |  |                  return 0;
+  |  |                }
+  |  |
+  |
+scons: Configure: Building "release\.sconf_temp\conftest_4.obj" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |cl /Forelease\.sconf_temp\conftest_4.obj /c release\.sconf_temp\conftest_4.c /nologo /arch:SSE2 /GR /O2 /Ob2 /TP /Ot /Oy /EHsc /MD /Zp16 /Zc:forScope /Gd /W1 /Zi /DNDEBUG /DIA32 /Isrc /IC:\uni\uray\rtfact-dev\include /IC:\lib\boost_1_37_0 /IC:\lib\SDL\include /IC:\lib\tbb\include /IC:\lib\glew\include
+  |
+scons: Configure: "release\.sconf_temp\conftest_5.c" is up to date.
+scons: Configure: The original builder output was:
+  |release\.sconf_temp\conftest_5.c <-
+  |  |
+  |  |                #include <png.h>
+  |  |                int main(int argc, char **argv) { 
+  |  |                  png_create_read_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
+  |  |                  return 0;
+  |  |                }
+  |  |
+  |
+scons: Configure: Building "release\.sconf_temp\conftest_5.obj" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |cl /Forelease\.sconf_temp\conftest_5.obj /c release\.sconf_temp\conftest_5.c /nologo /arch:SSE2 /GR /O2 /Ob2 /TP /Ot /Oy /EHsc /MD /Zp16 /Zc:forScope /Gd /W1 /Zi /DNDEBUG /DIA32 /Isrc /IC:\uni\uray\rtfact-dev\include /IC:\lib\boost_1_37_0 /IC:\lib\SDL\include /IC:\lib\tbb\include /IC:\lib\glew\include
+  |
+scons: Configure: "release\.sconf_temp\conftest_6.c" is up to date.
+scons: Configure: The original builder output was:
+  |release\.sconf_temp\conftest_6.c <-
+  |  |
+  |  |                #include <libpng/png.h>
+  |  |                int main(int argc, char **argv) { 
+  |  |                  png_create_read_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
+  |  |                  return 0;
+  |  |                }
+  |  |
+  |
+scons: Configure: Building "release\.sconf_temp\conftest_6.obj" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |cl /Forelease\.sconf_temp\conftest_6.obj /c release\.sconf_temp\conftest_6.c /nologo /arch:SSE2 /GR /O2 /Ob2 /TP /Ot /Oy /EHsc /MD /Zp16 /Zc:forScope /Gd /W1 /Zi /DNDEBUG /DIA32 /Isrc /IC:\uni\uray\rtfact-dev\include /IC:\lib\boost_1_37_0 /IC:\lib\SDL\include /IC:\lib\tbb\include /IC:\lib\glew\include
+  |
+scons: Configure: "release\.sconf_temp\conftest_7.c" is up to date.
+scons: Configure: The original builder output was:
+  |release\.sconf_temp\conftest_7.c <-
+  |  |
+  |  |                #include <png.h>
+  |  |                int main(int argc, char **argv) { 
+  |  |                  png_create_read_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
+  |  |                  return 0;
+  |  |                }
+  |  |
+  |
+scons: Configure: Building "release\.sconf_temp\conftest_7.obj" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |cl /Forelease\.sconf_temp\conftest_7.obj /c release\.sconf_temp\conftest_7.c /nologo /arch:SSE2 /GR /O2 /Ob2 /TP /Ot /Oy /EHsc /MD /Zp16 /Zc:forScope /Gd /W1 /Zi /DNDEBUG /DIA32 /Isrc /IC:\uni\uray\rtfact-dev\include /IC:\lib\boost_1_37_0 /IC:\lib\SDL\include /IC:\lib\tbb\include /IC:\lib\glew\include
+  |
+scons: Configure: "release\.sconf_temp\conftest_8.c" is up to date.
+scons: Configure: The original builder output was:
+  |release\.sconf_temp\conftest_8.c <-
+  |  |
+  |  |                #include <libpng/png.h>
+  |  |                int main(int argc, char **argv) { 
+  |  |                  png_create_read_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
+  |  |                  return 0;
+  |  |                }
+  |  |
+  |
+scons: Configure: Building "release\.sconf_temp\conftest_8.obj" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |cl /Forelease\.sconf_temp\conftest_8.obj /c release\.sconf_temp\conftest_8.c /nologo /arch:SSE2 /GR /O2 /Ob2 /TP /Ot /Oy /EHsc /MD /Zp16 /Zc:forScope /Gd /W1 /Zi /DNDEBUG /DIA32 /Isrc /IC:\uni\uray\rtfact-dev\include /IC:\lib\boost_1_37_0 /IC:\lib\SDL\include /IC:\lib\tbb\include /IC:\lib\glew\include
+  |
+scons: Configure: (cached) no
+
+scons: Configure: Checking for libjpeg... 
+scons: Configure: "release\.sconf_temp\conftest_9.c" is up to date.
+scons: Configure: The original builder output was:
+  |release\.sconf_temp\conftest_9.c <-
+  |  |
+  |  |    #include <stdio.h>
+  |  |    #include <jpeglib.h>
+  |  |    int main(int argc, char **argv) { 
+  |  |      struct jpeg_decompress_struct cinfo;
+  |  |      jpeg_destroy_decompress(&cinfo);
+  |  |      return 0;
+  |  |    }
+  |  |
+  |
+scons: Configure: Building "release\.sconf_temp\conftest_9.obj" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |cl /Forelease\.sconf_temp\conftest_9.obj /c release\.sconf_temp\conftest_9.c /nologo /arch:SSE2 /GR /O2 /Ob2 /TP /Ot /Oy /EHsc /MD /Zp16 /Zc:forScope /Gd /W1 /Zi /DNDEBUG /DIA32 /Isrc /IC:\uni\uray\rtfact-dev\include /IC:\lib\boost_1_37_0 /IC:\lib\SDL\include /IC:\lib\tbb\include /IC:\lib\glew\include
+  |
+scons: Configure: "release\.sconf_temp\conftest_10.c" is up to date.
+scons: Configure: The original builder output was:
+  |release\.sconf_temp\conftest_10.c <-
+  |  |
+  |  |    #include <stdio.h>
+  |  |    #include <jpeglib.h>
+  |  |    int main(int argc, char **argv) { 
+  |  |      struct jpeg_decompress_struct cinfo;
+  |  |      jpeg_destroy_decompress(&cinfo);
+  |  |      return 0;
+  |  |    }
+  |  |
+  |
+scons: Configure: Building "release\.sconf_temp\conftest_10.obj" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |cl /Forelease\.sconf_temp\conftest_10.obj /c release\.sconf_temp\conftest_10.c /nologo /arch:SSE2 /GR /O2 /Ob2 /TP /Ot /Oy /EHsc /MD /Zp16 /Zc:forScope /Gd /W1 /Zi /DNDEBUG /DIA32 /Isrc /IC:\uni\uray\rtfact-dev\include /IC:\lib\boost_1_37_0 /IC:\lib\SDL\include /IC:\lib\tbb\include /IC:\lib\glew\include
+  |
+scons: Configure: "release\.sconf_temp\conftest_11.c" is up to date.
+scons: Configure: The original builder output was:
+  |release\.sconf_temp\conftest_11.c <-
+  |  |
+  |  |    #include <stdio.h>
+  |  |    #include <jpeglib.h>
+  |  |    int main(int argc, char **argv) { 
+  |  |      struct jpeg_decompress_struct cinfo;
+  |  |      jpeg_destroy_decompress(&cinfo);
+  |  |      return 0;
+  |  |    }
+  |  |
+  |
+scons: Configure: Building "release\.sconf_temp\conftest_11.obj" failed in a previous run and all its sources are up to date.
+scons: Configure: The original builder output was:
+  |cl /Forelease\.sconf_temp\conftest_11.obj /c release\.sconf_temp\conftest_11.c /nologo /arch:SSE2 /GR /O2 /Ob2 /TP /Ot /Oy /EHsc /MD /Zp16 /Zc:forScope /Gd /W1 /Zi /DNDEBUG /DIA32 /Isrc /IC:\uni\uray\rtfact-dev\include /IC:\lib\boost_1_37_0 /IC:\lib\SDL\include /IC:\lib\tbb\include /IC:\lib\glew\include
+  |
+scons: Configure: (cached) no
+
+scons: Configure: Checking for SDL... 
+scons: Configure: "release\.sconf_temp\conftest_12.c" is up to date.
+scons: Configure: The original builder output was:
+  |release\.sconf_temp\conftest_12.c <-
+  |  |
+  |  |            #include <SDL.h>
+  |  |            int main(int argc, char **argv)
+  |  |            {
+  |  |                SDL_Init(SDL_INIT_VIDEO);
+  |  |                SDL_Quit();
+  |  |                return 0;
+  |  |            }
+  |  |            
+  |
+scons: Configure: "release\.sconf_temp\conftest_12.obj" is up to date.
+scons: Configure: The original builder output was:
+  |cl /Forelease\.sconf_temp\conftest_12.obj /c release\.sconf_temp\conftest_12.c /nologo /arch:SSE2 /GR /O2 /Ob2 /TP /Ot /Oy /EHsc /MD /Zp16 /Zc:forScope /Gd /W1 /Zi /DNDEBUG /DIA32 /Isrc /IC:\uni\uray\rtfact-dev\include /IC:\lib\boost_1_37_0 /IC:\lib\SDL\include /IC:\lib\tbb\include /IC:\lib\glew\include
+  |
+scons: Configure: "release\.sconf_temp\conftest_12.exe" is up to date.
+scons: Configure: The original builder output was:
+  |link /nologo /MACHINE:X86 /SUBSYSTEM:CONSOLE /DEBUG /OUT:release\.sconf_temp\conftest_12.exe /LIBPATH:release\lib /LIBPATH:C:\lib\SDL\lib /LIBPATH:C:\lib\tbb\ia32\vc9\lib /LIBPATH:C:\lib\glew\lib SDL.lib SDLmain.lib release\.sconf_temp\conftest_12.obj
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C++ header file boost/bind.hpp... 
+scons: Configure: "release\.sconf_temp\conftest_13.cpp" is up to date.
+scons: Configure: The original builder output was:
+  |release\.sconf_temp\conftest_13.cpp <-
+  |  |
+  |  |#include "boost/bind.hpp"
+  |  |
+  |  |
+  |
+scons: Configure: "release\.sconf_temp\conftest_13.obj" is up to date.
+scons: Configure: The original builder output was:
+  |cl /Forelease\.sconf_temp\conftest_13.obj /c release\.sconf_temp\conftest_13.cpp /nologo /arch:SSE2 /GR /O2 /Ob2 /TP /Ot /Oy /EHsc /MD /Zp16 /Zc:forScope /Gd /W1 /Zi /TP /nologo /arch:SSE2 /GR /O2 /Ob2 /TP /Ot /Oy /EHsc /MD /Zp16 /Zc:forScope /Gd /W1 /Zi /DNDEBUG /DIA32 /DRTFACT_HAVE_LIBSDL /Isrc /IC:\uni\uray\rtfact-dev\include /IC:\lib\boost_1_37_0 /IC:\lib\SDL\include /IC:\lib\tbb\include /IC:\lib\glew\include
+  |
+scons: Configure: (cached) yes
+
+scons: Configure: Checking for C++ header file boost/function.hpp... 
+scons: Configure: "release\.sconf_temp\conftest_14.cpp" is up to date.
+scons: Configure: The original builder output was:
+  |release\.sconf_temp\conftest_14.cpp <-
+  |  |
+  |  |#include "boost/function.hpp"
+  |  |
+  |  |
+  |
+scons: Configure: "release\.sconf_temp\conftest_14.obj" is up to date.
+scons: Configure: The original builder output was:
+  |cl /Forelease\.sconf_temp\conftest_14.obj /c release\.sconf_temp\conftest_14.cpp /nologo /arch:SSE2 /GR /O2 /Ob2 /TP /Ot /Oy /EHsc /MD /Zp16 /Zc:forScope /Gd /W1 /Zi /TP /nologo /arch:SSE2 /GR /O2 /Ob2 /TP /Ot /Oy /EHsc /MD /Zp16 /Zc:forScope /Gd /W1 /Zi /DNDEBUG /DIA32 /DRTFACT_HAVE_LIBSDL /Isrc /IC:\uni\uray\rtfact-dev\include /IC:\lib\boost_1_37_0 /IC:\lib\SDL\include /IC:\lib\tbb\include /IC:\lib\glew\include
+  |
+scons: Configure: (cached) yes
+
+

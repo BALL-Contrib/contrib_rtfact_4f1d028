@@ -1,0 +1,18 @@
+#VRML V2.0 utf8
+
+PackagedShader {
+    exposedField SFBool packetize FALSE
+    exposedField SFBool specialize TRUE
+    exposedField SFBool syncParams TRUE
+
+    exposedField SFFloat Kd 0.5
+    exposedField SFFloat Ka 0.1
+    exposedField SFFloat frequency 4
+    exposedField SFFloat s_scale 1
+    exposedField SFFloat t_scale 1
+
+    exposedField SFColor blackcolor 0 0 0
+    exposedField SFColor whitecolor 1 1 1
+
+    url "rtfact:AnySL:rsl_checker.bc"
+}

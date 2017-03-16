@@ -1,0 +1,77 @@
+#X3D V3.0 utf8
+
+PROFILE Full
+
+Viewpoint {
+  position 0.0 0.4 0.3
+  orientation 0.0 0.0 0.0 0.0
+  fieldOfView 0.785398
+}
+
+
+PointLight {
+   location 0.3 0.7 0.3
+   color 1 1 1
+}
+PointLight {
+   location 0.0 0.5 0.2
+   color 0.5 0.5 0.5
+}
+PointLight {
+   location 0.0 100.0 0.0
+   color 0.5 0.5 0.5
+}
+
+
+Transform {
+   translation 0 0.4 0
+   scale 0.1 0.1 0.1
+   children Shape {
+      appearance Appearance {
+     shaders PackagedShader {
+        field SFBool vectorize FALSE
+        field SFBool specialize TRUE
+
+	    exposedField SFColor color 1.0 1.0 1.0
+
+	    exposedField SFFloat Ka 0.2
+	    exposedField SFFloat Kd 0.4
+	    exposedField SFFloat Ks 0.1
+	    exposedField SFFloat roughness 0.1
+
+	    url "rtfact:AnySL:GraniteShader.bc"
+	    #url "rtfact:JIT:GraniteShader.bc"
+      }
+      material Material { }
+    }
+    geometry Sphere {}
+  }
+}
+
+Transform {
+   scale 7 4 7
+   #scale  4 4 4
+   translation 0 -4 0
+   children Shape {
+      appearance Appearance {
+     shaders DEF PP_MAT PackagedShader {
+        field SFBool vectorize FALSE
+
+        exposedField SFFloat Kd 0.5
+        exposedField SFFloat Ka 0.1
+        exposedField SFFloat frequency 16
+        exposedField SFFloat s_scale 1
+        exposedField SFFloat t_scale 1
+
+        exposedField SFColor blackcolor 0 0 0
+        exposedField SFColor whitecolor 1 1 1
+
+        url "rtfact:JIT:CheckerShader.bc"
+
+     }
+     material Material { }
+      }
+      geometry Box {
+      }
+   }
+}

@@ -1,0 +1,312 @@
+#include "output.cg"
+
+uniform samplerRECT uDistanceTexture:FBDistance;
+uniform samplerRECT uColorTexture:FBColor;
+uniform samplerRECT uNormalTexture:FBNormal;
+uniform samplerRECT uColorBleedingTexture:FBColorBleeding;
+uniform float uLambda:CBBlurLambda;
+uniform float uPhi:CBBlurPhi;
+
+varying float2 vFragment:TEXCOORD0;
+
+//@
+float4 approx_gradient_2CB(samplerRECT buffer,
+                         float2 texCoord)
+{
+	float4 gradx = (texRECT(buffer, float2(texCoord.x + 1.0f, texCoord.y)) -
+				    texRECT(buffer, float2(texCoord.x - 1.0f, texCoord.y))) * 0.5f;
+	float4 grady = (texRECT(buffer, float2(texCoord.x, texCoord.y + 1.0f)) -
+				    texRECT(buffer, float2(texCoord.x, texCoord.y - 1.0f))) * 0.5f;
+
+	return gradx * gradx + grady * grady;
+}
+
+float compute_diffusivityCB(samplerRECT colorBuffer,
+                            samplerRECT normalBuffer,
+                            samplerRECT depthBuffer,
+                            float2 texCoord)
+{
+	float4 color_grad  = approx_gradient_2CB(colorBuffer, vFragment);
+	float4 normal_grad = approx_gradient_2CB(normalBuffer, vFragment);
+	float4 depth_grad  = approx_gradient_2CB(depthBuffer, vFragment);
+	float4 temp_grad   = color_grad + normal_grad + depth_grad;
+	float spatial_grad = 0.2125f * temp_grad.x + 0.7154f * temp_grad.y + 0.0721f * temp_grad.z;
+	return 1.0f / (1.0f + spatial_grad / (0.2f * 0.2f));
+}
+
+float approx_diffusivityCB(samplerRECT colorBuffer,
+                           samplerRECT normalBuffer,
+                           samplerRECT depthBuffer,
+                           float2 texCoord0,
+                           float2 texCoord1)
+{
+    float diff0 = compute_diffusivityCB(colorBuffer,
+                                      normalBuffer,
+                                      depthBuffer,
+                                      texCoord0);
+    float diff1 = compute_diffusivityCB(colorBuffer,
+                                      normalBuffer,
+                                      depthBuffer,
+                                      texCoord1);
+	return 0.5f * (diff0 + diff1);
+}
+
+float4 blurCB() outputs(COLOR)
+{
+    float ip1j = approx_diffusivityCB(uColorBleedingTexture,
+                                    uNormalTexture,
+                                    uDistanceTexture,
+                                    float2(vFragment),
+                                    float2(vFragment.x + 1.0f, vFragment.y));
+
+	float im1j = approx_diffusivityCB(uColorBleedingTexture,
+                                    uNormalTexture,
+                                    uDistanceTexture,
+                                    float2(vFragment),
+                                    float2(vFragment.x - 1.0f, vFragment.y));
+
+	float ijp1 = approx_diffusivityCB(uColorBleedingTexture,
+                                    uNormalTexture,
+                                    uDistanceTexture,
+                                    float2(vFragment),
+                                    float2(vFragment.x, vFragment.y + 1.0f));
+
+	float ijm1 = approx_diffusivityCB(uColorBleedingTexture,
+                                    uNormalTexture,
+                                    uDistanceTexture,
+                                    float2(vFragment),
+                                    float2(vFragment.x, vFragment.y - 1.0f));
+
+	float4 val  = 0.25f * ip1j * texRECT(uColorBleedingTexture, float2(vFragment.x + 1.0f, vFragment.y)) +
+				  0.25f * im1j * texRECT(uColorBleedingTexture, float2(vFragment.x - 1.0f, vFragment.y)) +
+				  0.25f * ijp1 * texRECT(uColorBleedingTexture, float2(vFragment.x, vFragment.y + 1.0f)) +
+				  0.25f * ijm1 * texRECT(uColorBleedingTexture, float2(vFragment.x, vFragment.y - 1.0f)) +
+				  (1.0f - 0.25f * (ip1j + im1j + ijp1 + ijm1)) * texRECT(uColorBleedingTexture, vFragment);
+	return val;
+}
+//@
+
+technique Main {
+    pass rtcb_blurCB0 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB1 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB2 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB3 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB4 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB5 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+    pass rtcb_blurCB6 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB7 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB8 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB9 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB10 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB11 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+    pass rtcb_blurCB12 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB13 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB14 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB15 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB16 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB17 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+    pass rtcb_blurCB18 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB19 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB20 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB21 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB22 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB23 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+    pass rtcb_blurCB24 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB25 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB26 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB27 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB28 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB29 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+    pass rtcb_blurCB30 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB31 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB32 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB33 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB34 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB35 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+
+	pass rtcb_blurCB36 <
+        string output = "FBColorBleeding";>
+    {
+        FragmentProgram = compile fp40 blurCB();
+    }
+}
+#endif

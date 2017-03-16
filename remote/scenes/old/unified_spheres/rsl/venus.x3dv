@@ -1,0 +1,38 @@
+#X3D V3.0 utf8
+
+PROFILE Full
+
+Viewpoint {
+  position 0 0 2.5
+  fieldOfView 0.785398
+}
+
+PointLight {
+   location 0.5 1.5 3.5
+   color 1 1 1
+}
+
+Transform {
+   children Shape {
+      appearance Appearance {
+     shaders PackagedShader {
+        field SFBool vectorize TRUE
+        field SFBool specialize TRUE
+         
+        #constants for venus
+		exposedField SFFloat Ka 1
+		exposedField SFFloat Kd 1
+		exposedField SFFloat offset 0.5
+		exposedField SFFloat scale 0.7
+		exposedField SFFloat twist 0.5
+		exposedField SFFloat omega 0.675
+		exposedField SFFloat octaves 4
+		exposedField SFColor Cc 1 1 0
+         
+		url "rtfact:AnySL:rsl_KMVenus.bc"
+      }
+      material Material { }
+    }
+    geometry Sphere {}
+  }
+}

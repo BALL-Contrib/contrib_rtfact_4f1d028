@@ -1,0 +1,38 @@
+#X3D V3.0 utf8
+
+PROFILE Full
+
+Viewpoint {
+  position 0 0 2.5
+  fieldOfView 0.785398
+}
+
+PointLight {
+   location 0.5 1.5 3.5
+   color 1 1 1
+}
+
+Transform {
+   children Shape {
+      appearance Appearance {
+     shaders PackagedShader {
+        field SFBool vectorize TRUE
+        field SFBool specialize TRUE
+
+	    exposedField SFFloat ringscale 10.0
+	    exposedField SFColor lightWood 0.3 0.12 0.03
+	    exposedField SFColor darkWood 0.05 0.01 0.005
+
+	    exposedField SFFloat Ka 0.2
+	    exposedField SFFloat Kd 0.4
+	    exposedField SFFloat Ks 0.6
+	    exposedField SFFloat roughness 0.1
+
+	    url "rtfact:AnySL:WoodShader.bc"
+	    #url "rtfact:JIT:WoodShader.bc"
+      }
+      material Material { }
+    }
+    geometry Sphere {}
+  }
+}

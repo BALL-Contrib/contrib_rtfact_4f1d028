@@ -1,0 +1,108 @@
+#X3D V3.0 utf8
+
+PROFILE Full
+
+Viewpoint {
+  position 0 0 4
+  orientation -0.001 0.0 0.0 0.001
+  fieldOfView 0.785398
+}
+
+DEF PointLight1 PointLight {
+   location 0 0 3
+   color 1 1 1
+}
+
+DEF PointLight2 PointLight {
+  location 0 0 -3
+  color 1 1 1
+}
+
+Transform {
+   #rotation 1 0.4 0 1.570796
+   #scale 0.04 0.04 0.04
+   #translation 0 -1 0
+   children Shape {
+      appearance Appearance {
+	 shaders DEF SHADER1 PackagedShader {
+	    exposedField SFBool packetize TRUE
+	    exposedField SFBool specialize TRUE
+	    exposedField SFBool syncParams TRUE
+
+exposedField SFFloat Ka 0.0
+exposedField SFFloat Kd 0.0
+exposedField SFFloat Ks 0.5
+exposedField SFFloat Kr 1.0       # reflective coefficient
+exposedField SFFloat Kt 0.7       # transmissive coefficient
+exposedField SFFloat roughness 0.05
+exposedField SFFloat blur 0.0
+exposedField SFFloat eta 1.5      # index of refraction
+exposedField SFColor specularcolor 1.0 1.0 1.0
+exposedField SFColor transmitcolor 1.0 0.0 0.0
+exposedField SFFloat samples 1.0
+exposedField SFFloat maxDepth 2.0
+
+	    #url "rtfact:RSL:rsl_TLOrange.bc" #red w/ higlight
+	    #url "rtfact:RSL:rsl_SHW_velvet.bc" #freaky
+	    #url "rtfact:RSL:rsl_LGVeinedMarble.bc" #too dark
+	    #url "rtfact:RSL:rsl_LGStarfield.bc" #black
+	    #url "rtfact:RSL:rsl_LGbrushedmetal.bc" #too bright
+	    #url "rtfact:RSL:rsl_KMVenus.bc" #ok
+	    #url "rtfact:RSL:rsl_KMPlanetclouds.bc" #black
+	    #url "rtfact:RSL:rsl_KMPuffyclouds.bc" #blue
+	    #url "rtfact:RSL:rsl_KMLuna.bc" #ok (?)
+	    #url "rtfact:RSL:rsl_skin.bc" #ok
+	    #url "rtfact:RSL:rsl_glass.bc"
+	    #url "rtfact:JIT:NormalShader.bc"
+
+	    url "rtfact:AnySL:rsl_glass.bc"
+	    #url "rtfact:AnySL:GlassShader.bc"
+	    #url "rtfact:AnySL:MirrorShader.bc"
+	    #url "rtfact:AnySL:rsl_mirror.bc"
+
+	 }
+	 material Material { }
+      }
+	geometry Sphere {}
+	}
+}
+
+Transform {
+   #scale 4 4 10
+   scale  4 4 4
+   children Shape {
+      appearance Appearance {
+	 shaders DEF SHADER2 PackagedShader {
+	    exposedField SFBool packetize TRUE
+	    exposedField SFBool specialize TRUE
+	    exposedField SFBool syncParams TRUE
+
+	    # Checker
+	    exposedField SFFloat Kd 0.5
+	    exposedField SFFloat Ka 0.1
+	    exposedField SFFloat frequency 4
+	    exposedField SFFloat s_scale 1
+	    exposedField SFFloat t_scale 1
+
+	    exposedField SFColor blackcolor 0 0 0
+	    exposedField SFColor whitecolor 1 1 1
+
+#plastic
+exposedField SFFloat Ks 0.5
+exposedField SFFloat Kr 1.0       # reflective coefficient
+exposedField SFFloat Kt 0.7       # transmissive coefficient
+exposedField SFFloat roughness 0.05
+exposedField SFColor specularcolor 1.0 1.0 1.0
+
+	    url "rtfact:AnySL:rsl_checker.bc"
+	    #url "rtfact:AnySL:CheckerShader.bc"
+	    #url "rtfact:AnySL:rsl_normal_s.bc"
+	    #url "rtfact:AnySL:NormalShader.bc"
+	 }
+	 material Material { }
+      }
+      geometry Box {
+      }
+   }
+}
+

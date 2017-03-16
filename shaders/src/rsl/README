@@ -1,0 +1,54 @@
+Here are all original shader sources that we use.
+
+WoodShader.cpp : wood.sl
+
+WhittedShader.cpp : whitted.sl
+
+  Code is directly from RenderMan specification.
+
+StarballShader.cpp : starball.sl
+
+  starball.sl includes material.h, which includes other headers,
+  however only MaterialPlastic function from material.h is used which is
+  self-contained.
+
+StarballGlassShader.cpp : starball.sl + glass.sl
+
+  StarballGlassShader is a combination of starball.sl and glass.sl so there
+  is no original RSL source code.
+
+ScreenAA.cpp : screen_aa.sl
+
+  Only the commented, not anti-aliased part of the shader is used:
+  /* This would be the non-antialiased version:
+   *    w = step (GWF,ss) - step(1-GWF,ss);
+   *    h = step (GWF,tt) - step(1-GWF,tt);
+   */
+
+ReflectiveParquetPlankShader.cpp : parquet_plank.sl + reflection with fresnel term
+
+PhongShader.cpp : seems to be not RenderMan-based
+
+NormalShader.cpp : not RenderMan-based, just returns normal as color
+
+MirrorShader.cpp : not RenderMan-based, just do perfect mirror
+
+MandelbrotShader.cpp : Simon's mandelbrot shader
+
+GraniteShader.cpp : granite.sl
+
+GlassShader.cpp : glass.sl
+
+DepthShader.cpp : not RenderMan-based, just returns hit distance as color
+
+DentedShader.cpp : dented.sl
+
+CheckerShader.cpp : checker.sl
+
+CheckerReflectiveShader.cpp : checker.sl + reflective ray
+
+BrickShader.cpp : brick.sl
+
+ApiShader.cpp : not RenderMan-based
+
+AlphaShader.cpp : not RenderMan-based

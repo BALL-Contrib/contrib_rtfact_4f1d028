@@ -1,0 +1,18 @@
+#VRML V2.0 utf8
+
+PackagedShader {
+    exposedField SFBool packetize FALSE
+    exposedField SFBool specialize TRUE
+    exposedField SFBool syncParams TRUE
+
+    exposedField SFColor Cs 0.0 0.0 1.0
+    exposedField SFColor specularcolor 1 0 0
+    exposedField SFFloat Ka 0
+    exposedField SFFloat Kd 0.1
+    exposedField SFFloat Ks 0.8
+    exposedField SFFloat roughness 0.1
+    exposedField SFFloat density 0.20
+    exposedField SFFloat frequency 20
+
+    url "rtfact:AnySL:ScreenAAShader.bc"
+}

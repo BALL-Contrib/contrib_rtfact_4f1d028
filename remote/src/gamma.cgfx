@@ -1,0 +1,19 @@
+#define outputs(maSemantic) :maSemantic
+float4 uOriginalColor:FBColor;
+float uGamma:Gamma;
+
+//@
+float4 gammaCorrection() outputs(COLOR)
+{
+    float invGamma=1.0/uGamma;
+    return float4(pow(uOriginalColor.rgb,invGamma.xxx),1.0);
+}
+//@
+
+technique Main {
+    pass gamma <
+        string output = "FBColor";>
+    {
+        FragmentProgram = compile fp40 gammaCorrection();
+    }
+}

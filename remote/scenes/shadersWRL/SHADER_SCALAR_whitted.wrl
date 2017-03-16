@@ -1,0 +1,18 @@
+#VRML V2.0 utf8
+
+PackagedShader {
+    exposedField SFBool packetize FALSE
+    exposedField SFBool specialize TRUE
+    exposedField SFBool syncParams TRUE
+
+    exposedField SFFloat eta 1.5 # index of refraction
+    exposedField SFFloat Kr  0.8 # reflective coefficient
+    exposedField SFFloat Kt  0.2 # transmissive coefficient
+    exposedField SFFloat Ks  0.1 # specular coefficient
+    exposedField SFFloat Kss   2 # specular exponent
+    exposedField SFFloat Kd  0.5 #
+    
+    exposedField SFFloat maxDepth 2.0
+
+    url "rtfact:AnySL:WhittedShader.bc"
+}

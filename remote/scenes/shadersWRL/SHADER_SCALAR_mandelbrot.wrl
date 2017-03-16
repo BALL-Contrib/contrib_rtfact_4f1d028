@@ -1,0 +1,20 @@
+#VRML V2.0 utf8
+
+PackagedShader {
+    exposedField SFBool packetize FALSE
+    exposedField SFBool specialize TRUE
+    exposedField SFBool syncParams TRUE
+
+    exposedField SFFloat translateX 0
+    exposedField SFFloat translateY 0
+    exposedField SFFloat scale 1
+    exposedField SFFloat min_cx -2
+    exposedField SFFloat min_cy -1
+    exposedField SFFloat pa_x 3
+    exposedField SFFloat pa_y 2.25
+    exposedField SFInt32 maxIterations 80
+    exposedField SFFloat maxSquaredValue 100000
+    exposedField SFBool  colored TRUE
+
+    url "rtfact:AnySL:MandelbrotShader.bc"
+}

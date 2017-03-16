@@ -1,0 +1,71 @@
+#X3D V3.0 utf8
+
+PROFILE Full
+
+Viewpoint {
+  position 0 0 4
+  orientation -0.001 0.0 0.0 0.001
+  fieldOfView 0.785398
+}
+
+PointLight {
+   location 0 0 3
+   color 2 2 2
+}
+
+PointLight {
+   location 0 0 -3
+   color 2 2 2
+}
+
+Transform {
+   scale 4 4 10
+   children Shape {
+      appearance Appearance {
+	 shaders PackagedShader {
+	    field SFBool vectorize FALSE
+	    field SFBool specialize TRUE
+
+	    # following parameters work like plastic shader
+	    exposedField SFFloat Ka 1.0
+	    exposedField SFFloat Kd 0.75
+	    exposedField SFFloat Ks 0.15
+	    exposedField SFFloat roughness 0.025
+	    exposedField SFColor specularcolor 1.0 1.0 1.0
+
+	    exposedField SFFloat ringscale 15.0  # scaling for the ring spacing
+	    exposedField SFFloat grainscale 60.0 # scaling for the fine grain
+	    exposedField SFFloat ts_x 1.0 # overall scaling factor for the texture X
+	    exposedField SFFloat ts_y 1.0 # overall scaling factor for the texture Y
+	    exposedField SFFloat plankspertile 4.0 # number of planks in each parquet tile
+
+	    # surface colors for the wood itself
+	    exposedField SFColor lightwood 0.57 0.292 0.125
+	    exposedField SFColor darkwood 0.275 0.15 0.06
+
+	    # the color of the "grooves" between the planks
+	    exposedField SFColor groovecolor .05 .04 .015
+
+	    # width of each plank (in terms of s/t)
+	    exposedField SFFloat plankwidth 0.05
+
+	    # width of grooves between planks (in terms of s/t)
+	    exposedField SFFloat groovewidth 0.001
+
+	    # controls how much color varies from plank to plank
+	    exposedField SFFloat plankvary 0.8
+
+	    # relative graininess (0 = no fine grain)
+	    exposedField SFFloat grainy 0.1
+
+	    # relative wavyness of the ring pattern
+	    exposedField SFFloat wavy 0.08
+
+	    url "rtfact:JIT:ParquetPlankShader.bc"
+	 }
+	 material Material { }
+      }
+      geometry Box {
+      }
+   }
+}

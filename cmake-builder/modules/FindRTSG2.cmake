@@ -1,0 +1,243 @@
+#
+# Find the RTSG2 includes and library
+##
+# sets RTSG2_INCLUDE_DIR
+#      RTSG2_LIBRARY
+#      RTSG2_DEBUG_LIBRARY
+#      RTSG2_FOUND
+#      RTSG2_LIBRARIES
+#      RTSG2_LIBRARY_DIR
+
+FIND_PATH(RTSG2_INCLUDE_DIR RTSG/Base/Config.hpp
+  ${RTSG2_ROOT}/include
+  /usr/local/include
+  /usr/include
+)
+
+# release
+FIND_LIBRARY(RTSG2_LIBRARY
+           NAMES RTSG2
+           PATHS ${RTSG2_INCLUDE_DIR}/../lib
+           ${RTSG2_INCLUDE_DIR}/../lib/${ARCH}
+           /usr/local/lib
+           /usr/lib)
+FIND_LIBRARY(RTSG2IMAGEIO_LIBRARY
+           NAMES RTSG2ImageIO
+           PATHS ${RTSG2_INCLUDE_DIR}/../lib
+           ${RTSG2_INCLUDE_DIR}/../lib/${ARCH}
+           /usr/local/lib
+           /usr/lib)
+FIND_LIBRARY(RTSG2OPENGL_LIBRARY
+           NAMES RTSG2OpenGL
+           PATHS ${RTSG2_INCLUDE_DIR}/../lib
+           ${RTSG2_INCLUDE_DIR}/../lib/${ARCH}
+           /usr/local/lib
+           /usr/lib)
+FIND_LIBRARY(RTSG2SCENEIO_LIBRARY
+           NAMES RTSG2SceneIO
+           PATHS ${RTSG2_INCLUDE_DIR}/../lib
+           ${RTSG2_INCLUDE_DIR}/../lib/${ARCH}
+           /usr/local/lib
+           /usr/lib)
+FIND_LIBRARY(RTSG2STRINGIO_LIBRARY
+           NAMES RTSG2StringIO
+           PATHS ${RTSG2_INCLUDE_DIR}/../lib
+           ${RTSG2_INCLUDE_DIR}/../lib/${ARCH}
+           /usr/local/lib
+           /usr/lib)
+FIND_LIBRARY(RTSG2XML3D_LIBRARY
+           NAMES RTSG2XML3D
+           PATHS ${RTSG2_INCLUDE_DIR}/../lib
+           ${RTSG2_INCLUDE_DIR}/../lib/${ARCH}
+           /usr/local/lib
+           /usr/lib)
+FIND_LIBRARY(RTSG2XML3DBASIC_LIBRARY
+           NAMES RTSG2XML3DBasic
+           PATHS ${RTSG2_INCLUDE_DIR}/../lib
+           ${RTSG2_INCLUDE_DIR}/../lib/${ARCH}
+           /usr/local/lib
+           /usr/lib)
+FIND_LIBRARY(RTSG2XML3DOPENGL_LIBRARY
+           NAMES RTSG2XML3DOpenGL
+           PATHS ${RTSG2_INCLUDE_DIR}/../lib
+           ${RTSG2_INCLUDE_DIR}/../lib/${ARCH}
+           /usr/local/lib
+           /usr/lib)
+FIND_LIBRARY(RTSG2XML3DRTPIE_LIBRARY
+           NAMES RTSG2XML3DRTpie
+           PATHS ${RTSG2_INCLUDE_DIR}/../lib
+           ${RTSG2_INCLUDE_DIR}/../lib/${ARCH}
+           /usr/local/lib
+           /usr/lib)
+FIND_LIBRARY(RTSG2XML3DRTREMOTE_LIBRARY
+           NAMES RTSG2XML3DRTremote
+           PATHS ${RTSG2_INCLUDE_DIR}/../lib
+           ${RTSG2_INCLUDE_DIR}/../lib/${ARCH}
+           /usr/local/lib
+           /usr/lib)
+
+# debug
+FIND_LIBRARY(RTSG2_LIBRARY_DEBUG
+           NAMES rtsg2
+           PATHS ${RTSG2_INCLUDE_DIR}/../lib
+           ${RTSG2_INCLUDE_DIR}/../lib/${ARCH}
+           /usr/local/lib
+           /usr/lib)
+FIND_LIBRARY(RTSG2IMAGEIO_LIBRARY_DEBUG
+           NAMES RTSG2ImageIO
+           PATHS ${RTSG2_INCLUDE_DIR}/../lib
+           ${RTSG2_INCLUDE_DIR}/../lib/${ARCH}
+           /usr/local/lib
+           /usr/lib)
+FIND_LIBRARY(RTSG2OPENGL_LIBRARY_DEBUG
+           NAMES RTSG2OpenGL
+           PATHS ${RTSG2_INCLUDE_DIR}/../lib
+           ${RTSG2_INCLUDE_DIR}/../lib/${ARCH}
+           /usr/local/lib
+           /usr/lib)
+FIND_LIBRARY(RTSG2SCENEIO_LIBRARY_DEBUG
+           NAMES RTSG2SceneIO
+           PATHS ${RTSG2_INCLUDE_DIR}/../lib
+           ${RTSG2_INCLUDE_DIR}/../lib/${ARCH}
+           /usr/local/lib
+           /usr/lib)
+FIND_LIBRARY(RTSG2STRINGIO_LIBRARY_DEBUG
+           NAMES RTSG2StringIO
+           PATHS ${RTSG2_INCLUDE_DIR}/../lib
+           ${RTSG2_INCLUDE_DIR}/../lib/${ARCH}
+           /usr/local/lib
+           /usr/lib)
+FIND_LIBRARY(RTSG2XML3D_LIBRARY_DEBUG
+           NAMES RTSG2XML3D
+           PATHS ${RTSG2_INCLUDE_DIR}/../lib
+           ${RTSG2_INCLUDE_DIR}/../lib/${ARCH}
+           /usr/local/lib
+           /usr/lib)
+FIND_LIBRARY(RTSG2XML3DBASIC_LIBRARY_DEBUG
+           NAMES RTSG2XML3DBasic
+           PATHS ${RTSG2_INCLUDE_DIR}/../lib
+           ${RTSG2_INCLUDE_DIR}/../lib/${ARCH}
+           /usr/local/lib
+           /usr/lib)
+FIND_LIBRARY(RTSG2XML3DOPENGL_LIBRARY_DEBUG
+           NAMES RTSG2XML3DOpenGL
+           PATHS ${RTSG2_INCLUDE_DIR}/../lib
+           ${RTSG2_INCLUDE_DIR}/../lib/${ARCH}
+           /usr/local/lib
+           /usr/lib)
+FIND_LIBRARY(RTSG2XML3DRTPIE_LIBRARY_DEBUG
+           NAMES RTSG2XML3DRTpie
+           PATHS ${RTSG2_INCLUDE_DIR}/../lib
+           ${RTSG2_INCLUDE_DIR}/../lib/${ARCH}
+           /usr/local/lib
+           /usr/lib)
+FIND_LIBRARY(RTSG2XML3DRTREMOTE_LIBRARY_DEBUG
+           NAMES RTSG2XML3DRTremote
+           PATHS ${RTSG2_INCLUDE_DIR}/../lib
+           ${RTSG2_INCLUDE_DIR}/../lib/${ARCH}
+           /usr/local/lib
+           /usr/lib)
+
+SET(RTSG2_FOUND "NO")
+IF(RTSG2_INCLUDE_DIR AND RTSG2_LIBRARY AND RTSG2OPENGL_LIBRARY AND
+   RTSG2XML3DRTPIE_LIBRARY AND RTSG2XML3DOPENGL_LIBRARY AND
+   RTSG2XML3DBASIC_LIBRARY AND RTSG2XML3D_LIBRARY AND RTSG2STRINGIO_LIBRARY AND RTSG2SCENEIO_LIBRARY)
+  GET_FILENAME_COMPONENT( RTSG2_LIBRARY_DIR ${RTSG2_LIBRARY} PATH )
+  GET_FILENAME_COMPONENT( RTSG2_LIBRARY ${RTSG2_LIBRARY} NAME )
+  #GET_FILENAME_COMPONENT( RTSG2IMAGEIO_LIBRARY ${RTSG2IMAGEIO_LIBRARY} NAME )
+  GET_FILENAME_COMPONENT( RTSG2OPENGL_LIBRARY ${RTSG2OPENGL_LIBRARY} NAME )
+  #GET_FILENAME_COMPONENT( RTSG2XML3DRTREMOTE_LIBRARY ${RTSG2XML3DRTREMOTE_LIBRARY} NAME )
+  GET_FILENAME_COMPONENT( RTSG2XML3DRTPIE_LIBRARY ${RTSG2XML3DRTPIE_LIBRARY} NAME )
+  GET_FILENAME_COMPONENT( RTSG2XML3DOPENGL_LIBRARY ${RTSG2XML3DOPENGL_LIBRARY} NAME )
+  GET_FILENAME_COMPONENT( RTSG2XML3DBASIC_LIBRARY ${RTSG2XML3DBASIC_LIBRARY} NAME )
+  GET_FILENAME_COMPONENT( RTSG2XML3D_LIBRARY ${RTSG2XML3D_LIBRARY} NAME )
+  GET_FILENAME_COMPONENT( RTSG2STRINGIO_LIBRARY ${RTSG2STRINGIO_LIBRARY} NAME )
+  GET_FILENAME_COMPONENT( RTSG2SCENEIO_LIBRARY ${RTSG2SCENEIO_LIBRARY} NAME )
+
+  IF(WIN32)
+    SET(RTSG2_LIBRARIES optimized ${RTSG2_LIBRARY}
+                        #optimized ${RTSG2IMAGEIO_LIBRARY}
+                        optimized ${RTSG2OPENGL_LIBRARY}
+                        #optimized ${RTSG2XML3DRTREMOTE_LIBRARY}
+                        optimized ${RTSG2XML3DRTPIE_LIBRARY}
+                        optimized ${RTSG2XML3DOPENGL_LIBRARY}
+                        optimized ${RTSG2XML3DBASIC_LIBRARY}
+                        optimized ${RTSG2XML3D_LIBRARY}
+                        optimized ${RTSG2STRINGIO_LIBRARY}
+                        optimized ${RTSG2SCENEIO_LIBRARY})
+    IF(RTSG2_LIBRARY_DEBUG AND RTSG2OPENGL_LIBRARY_DEBUG AND
+      RTSG2XML3DRTPIE_LIBRARY_DEBUG AND RTSG2XML3DOPENGL_LIBRARY_DEBUG AND
+      RTSG2XML3DBASIC_LIBRARY_DEBUG AND RTSG2XML3D_LIBRARY_DEBUG AND RTSG2STRINGIO_LIBRARY_DEBUG AND RTSG2SCENEIO_LIBRARY_DEBUG)
+
+      GET_FILENAME_COMPONENT( RTSG2_LIBRARY_DEBUG ${RTSG2_LIBRARY_DEBUG} NAME )
+      #GET_FILENAME_COMPONENT( RTSG2IMAGEIO_LIBRARY_DEBUG ${RTSG2IMAGEIO_LIBRARY_DEBUG} NAME )
+      GET_FILENAME_COMPONENT( RTSG2OPENGL_LIBRARY_DEBUG ${RTSG2OPENGL_LIBRARY_DEBUG} NAME )
+      #GET_FILENAME_COMPONENT( RTSG2XML3DRTREMOTE_LIBRARY_DEBUG ${RTSG2XML3DRTREMOTE_LIBRARY_DEBUG} NAME )
+      GET_FILENAME_COMPONENT( RTSG2XML3DRTPIE_LIBRARY_DEBUG ${RTSG2XML3DRTPIE_LIBRARY_DEBUG} NAME )
+      GET_FILENAME_COMPONENT( RTSG2XML3DOPENGL_LIBRARY_DEBUG ${RTSG2XML3DOPENGL_LIBRARY_DEBUG} NAME )
+      GET_FILENAME_COMPONENT( RTSG2XML3DBASIC_LIBRARY_DEBUG ${RTSG2XML3DBASIC_LIBRARY_DEBUG} NAME )
+      GET_FILENAME_COMPONENT( RTSG2XML3D_LIBRARY_DEBUG ${RTSG2XML3D_LIBRARY_DEBUG} NAME )
+      GET_FILENAME_COMPONENT( RTSG2STRINGIO_LIBRARY_DEBUG ${RTSG2STRINGIO_LIBRARY_DEBUG} NAME )
+      GET_FILENAME_COMPONENT( RTSG2SCENEIO_LIBRARY_DEBUG ${RTSG2SCENEIO_LIBRARY_DEBUG} NAME )
+
+      SET(RTSG2_LIBRARIES ${RTSG2_LIBRARIES}
+                          debug ${RTSG2_LIBRARY_DEBUG}
+                          #debug ${RTSG2IMAGEIO_LIBRARY_DEBUG}
+                          debug ${RTSG2OPENGL_LIBRARY_DEBUG}
+                          #debug ${RTSG2XML3DRTREMOTE_LIBRARY_DEBUG}
+                          debug ${RTSG2XML3DRTPIE_LIBRARY_DEBUG}
+                          debug ${RTSG2XML3DOPENGL_LIBRARY_DEBUG}
+                          debug ${RTSG2XML3DBASIC_LIBRARY_DEBUG}
+                          debug ${RTSG2XML3D_LIBRARY_DEBUG}
+                          debug ${RTSG2STRINGIO_LIBRARY_DEBUG}
+                          debug ${RTSG2SCENEIO_LIBRARY_DEBUG})
+
+    ENDIF(RTSG2_LIBRARY_DEBUG AND RTSG2OPENGL_LIBRARY_DEBUG AND
+      RTSG2XML3DRTPIE_LIBRARY_DEBUG AND RTSG2XML3DOPENGL_LIBRARY_DEBUG AND
+      RTSG2XML3DBASIC_LIBRARY_DEBUG AND RTSG2XML3D_LIBRARY_DEBUG AND RTSG2STRINGIO_LIBRARY_DEBUG AND RTSG2SCENEIO_LIBRARY_DEBUG)
+
+    IF(CMAKE_CL_64)
+      SET(LINK_FLAGS "${LINK_FLAGS} /include:rtsg_link_modulelib_RTSG2XML3DRTpie")
+      SET(LINK_FLAGS "${LINK_FLAGS} /include:rtsg_link_modulelib_RTSG2SceneIO")
+      SET(LINK_FLAGS "${LINK_FLAGS} /include:rtsg_link_modulelib_RTSG2OpenGL")
+      SET(LINK_FLAGS "${LINK_FLAGS} /include:rtsg_link_modulelib_RTSG2XML3DOpenGL")
+      SET(LINK_FLAGS "${LINK_FLAGS} /include:rtsg_link_modulelib_RTSG2XML3DBasic")
+      SET(LINK_FLAGS "${LINK_FLAGS} /include:rtsg_link_modulelib_RTSG2XML3D")
+    ELSE(CMAKE_CL_64)
+      SET(LINK_FLAGS "${LINK_FLAGS} /include:_rtsg_link_modulelib_RTSG2XML3DRTpie")
+      SET(LINK_FLAGS "${LINK_FLAGS} /include:_rtsg_link_modulelib_RTSG2SceneIO")
+      SET(LINK_FLAGS "${LINK_FLAGS} /include:_rtsg_link_modulelib_RTSG2OpenGL")
+      SET(LINK_FLAGS "${LINK_FLAGS} /include:_rtsg_link_modulelib_RTSG2XML3DOpenGL")
+      SET(LINK_FLAGS "${LINK_FLAGS} /include:_rtsg_link_modulelib_RTSG2XML3DBasic")
+      SET(LINK_FLAGS "${LINK_FLAGS} /include:_rtsg_link_modulelib_RTSG2XML3D")
+    ENDIF(CMAKE_CL_64)
+
+  ELSE(WIN32)
+    SET(RTSG2_LIBRARIES general ${RTSG2_LIBRARY}
+                        #general ${RTSG2IMAGEIO_LIBRARY}
+                        general ${RTSG2OPENGL_LIBRARY}
+                        #general ${RTSG2XML3DRTREMOTE_LIBRARY}
+                        general ${RTSG2XML3DRTPIE_LIBRARY}
+                        general ${RTSG2XML3DOPENGL_LIBRARY}
+                        general ${RTSG2XML3DBASIC_LIBRARY}
+                        general ${RTSG2XML3D_LIBRARY}
+                        general ${RTSG2STRINGIO_LIBRARY}
+                        general ${RTSG2SCENEIO_LIBRARY})
+
+    IF(CMAKE_COMPILER_IS_GNUCXX)
+      SET(LINK_FLAGS "${LINK_FLAGS} -Wl,--no-as-needed -lRTSG2XML3DRTpie -Wl,-as-needed")
+      SET(LINK_FLAGS "${LINK_FLAGS} -Wl,--no-as-needed -lRTSG2SceneIO -Wl,-as-needed")
+      SET(LINK_FLAGS "${LINK_FLAGS} -Wl,--no-as-needed -lRTSG2OpenGL -Wl,-as-needed")
+      SET(LINK_FLAGS "${LINK_FLAGS} -Wl,--no-as-needed -lRTSG2XML3DOpenGL -Wl,-as-needed")
+      SET(LINK_FLAGS "${LINK_FLAGS} -Wl,--no-as-needed -lRTSG2XML3DBasic -Wl,-as-needed")
+      SET(LINK_FLAGS "${LINK_FLAGS} -Wl,--no-as-needed -lRTSG2XML3D -Wl,-as-needed")
+    ENDIF(CMAKE_COMPILER_IS_GNUCXX)
+
+  ENDIF(WIN32)
+  SET(RTSG2_FOUND "YES")
+ENDIF(RTSG2_INCLUDE_DIR AND RTSG2_LIBRARY AND RTSG2OPENGL_LIBRARY AND
+   RTSG2XML3DRTPIE_LIBRARY AND RTSG2XML3DOPENGL_LIBRARY AND
+   RTSG2XML3DBASIC_LIBRARY AND RTSG2XML3D_LIBRARY AND RTSG2STRINGIO_LIBRARY AND RTSG2SCENEIO_LIBRARY)
+
+SET(RTSG2_LIBRARIES "${RTSG2_LIBRARIES}" CACHE STRING "List of RTSG libraries")
+SET(RTSG2_LIBRARY_DIRS "${RTSG2_LIBRARY_DIR}" CACHE STRING "Paths to RTSG libraries")

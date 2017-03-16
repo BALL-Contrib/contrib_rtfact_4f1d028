@@ -1,0 +1,37 @@
+#define outputs(maSemantic) :maSemantic
+#define MONO_TRANSFORM(v)	(0.2125f * (v).x + 0.7154f * (v).y + 0.0721f * (v).z)
+
+uniform int2 uRes:WindowRes;
+uniform samplerRECT uDistanceTexture:FBDistance;
+uniform samplerRECT uColorTexture:FBColor;
+uniform samplerRECT uNormalTexture:FBNormal;
+
+varying float2 vFragment:TEXCOORD0;
+
+//@
+float4 approx_gradient_2(const float2 texCoord, samplerRECT buffer)
+{
+	float4 gradx = (texRECT(buffer, float2(texCoord.x + 1.0f, texCoord.y)) -
+				   texRECT(buffer, float2(texCoord.x - 1.0f, texCoord.y))) * 0.5f;
+	float4 grady = (texRECT(buffer, float2(texCoord.x, texCoord.y + 1.0f)) -
+				   texRECT(buffer, float2(texCoord.x, texCoord.y - 1.0f))) * 0.5f;
+
+	return gradx * gradx + grady * grady;
+}
+
+float4 edgeDetection() outputs(COLOR)
+{
+	float4 gradIntensity = approx_gradient_2(vFragment, uColorTexture);
+	float4 gradDepth     = approx_gradient_2(vFragment, uDistanceTexture);
+	float4 gradNormal    = approx_gradient_2(vFragment, uNormalTexture);
+	return sqrt(gradIntensity + gradDepth + gradNormal);
+}
+//@
+
+technique Main {
+    pass gamma <
+        string output = "FBColor";>
+    {
+        FragmentProgram = compile fp40 edgeDetection();
+    }
+}

@@ -1,0 +1,12 @@
+Iliyan Georgiev <georgiev@cs.uni-sb.de>
+
+  * Original author. Author of all code except for the code written by the
+    people mentioned below.
+
+
+Felix Klein <lachsen@graphics.cs.uni-sb.de>
+
+  * RTremote, and scene graph infrastructure.
+
+And other contributors.
+For a full list, refer to the top of each file in question.

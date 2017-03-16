@@ -1,0 +1,18 @@
+#VRML V2.0 utf8
+
+PackagedShader {
+    exposedField SFBool packetize TRUE
+    exposedField SFBool specialize TRUE
+    exposedField SFBool syncParams TRUE
+
+    exposedField SFFloat ringscale 100.0
+    exposedField SFColor lightWood 0.3 0.12 0.03
+    exposedField SFColor darkWood 0.05 0.01 0.005
+
+    exposedField SFFloat Ka 0.2
+    exposedField SFFloat Kd 0.4
+    exposedField SFFloat Ks 0.6
+    exposedField SFFloat roughness 0.1
+
+    url "rtfact:AnySL:rsl_wood.bc"
+}

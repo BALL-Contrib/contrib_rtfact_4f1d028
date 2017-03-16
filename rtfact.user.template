@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioUserFile>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			>
+			<DebugSettings
+				CommandArguments="..\demos\$(ProjectName)\RTfact.ini"
+				Environment="PATH=..\..\contrib\bin\x86;%PATH%"
+				EnvironmentMerge="true"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			>
+			<DebugSettings
+				CommandArguments="..\demos\$(ProjectName)\RTfact.ini"
+				Environment="PATH=..\..\contrib\bin\x86;%PATH%"
+				EnvironmentMerge="true"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			>
+			<DebugSettings
+				CommandArguments="..\demos\$(ProjectName)\RTfact.ini"
+				Environment="PATH=..\..\contrib\bin\x64;%PATH%"
+				EnvironmentMerge="true"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			>
+			<DebugSettings
+				CommandArguments="..\demos\$(ProjectName)\RTfact.ini"
+				Environment="PATH=..\..\contrib\bin\x64;%PATH%"
+				EnvironmentMerge="true"
+			/>
+		</Configuration>
+	</Configurations>
+</VisualStudioUserFile>

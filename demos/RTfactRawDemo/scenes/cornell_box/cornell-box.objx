@@ -1,0 +1,39 @@
+
+# Specifies a directional light source
+#light
+#type directional
+#direction 0 -1 -0.25
+#intensity 3 3 3
+#shadows on
+
+# Specifies a point light source
+#light
+#type point
+#position 0 3.995 0
+#intensity 10 10 10
+#attenuation 0 0 1
+#shadows on
+
+# Specifies a spot light source
+light
+type spot
+position 0 3.995 0
+direction 0.0 -1.0 0.0
+angle 0.2
+cutoff 0.46
+intensity 700 700 700
+attenuation 0 0 1
+shadows on
+
+# Specifies an area light source
+#light
+#type = quad
+#vertex1 = -31 22 -5
+#vertex2 =  31 22 -5
+#vertex3 = -31 22  5
+#intensity = 4 4 4
+#attenuation = 0 0 1
+#shadows = on
+#state = on
+#createGeometry = false
+

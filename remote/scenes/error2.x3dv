@@ -1,0 +1,85 @@
+#X3D V3.0 utf8
+
+PROFILE Full
+
+Viewpoint {
+  position 0.0 0.4 0.3
+  orientation 0.0 0.0 0.0 0.0
+  fieldOfView 0.785398
+}
+
+DEF PointLight1 PointLight {
+   location 0.1 0.7 0.2
+   color 2 2 2
+}
+DEF PointLight2 PointLight {
+   location 0.3 0.2 0.3
+}
+
+Transform {
+   translation 0 0.4 0
+   scale 0.1 0.1 0.1
+   children Shape {
+      appearance Appearance {
+     shaders DEF G_MAT PackagedShader {
+        field SFBool vectorize FALSE
+
+        exposedField SFFloat Ka 0.0
+        exposedField SFFloat Kd 0.0
+        exposedField SFFloat Ks 0.5
+        exposedField SFFloat Kr 1.0       # reflective coefficient
+        exposedField SFFloat Kt 0.7       # transmissive coefficient
+        exposedField SFFloat roughness 0.05
+        exposedField SFFloat blur 0.0
+        exposedField SFFloat eta 1.5      # index of refraction
+        exposedField SFColor specularcolor 1.0 1.0 1.0
+        exposedField SFColor transmitcolor 1.0 0.0 0.0
+        exposedField SFFloat samples 1.0
+        exposedField SFFloat maxDepth 2.0
+
+        url "rtfact:JIT:GlassShader.bc"
+      }
+      material Material { }
+    }
+    geometry Sphere {}
+  }
+}
+
+Transform {
+   scale 7 4 7
+   #scale  4 4 4
+   translation 0 -4 0
+   children Shape {
+      appearance Appearance {
+	 shaders DEF PP_MAT PackagedShader {
+	    field SFBool vectorize FALSE
+
+        exposedField SFFloat Kd 0.5
+        exposedField SFFloat Ka 0.1
+        exposedField SFFloat frequency 16
+        exposedField SFFloat s_scale 1
+        exposedField SFFloat t_scale 1
+
+        exposedField SFColor blackcolor 0 0 0
+        exposedField SFColor whitecolor 1 1 1
+
+        url "rtfact:JIT:CheckerShader.bc"
+
+	 }
+	 material Material { }
+      }
+      geometry Box {
+      }
+   }
+}
+
+
+
+DEF ColorChoice1 Script {
+   eventOut SFColor color_changed
+   field SFString title "transmitcolor"
+   field SFColor defaultColor 1.0 0.0 0.0
+   url "py_colors.py"
+}
+
+ROUTE ColorChoice1.color_changed TO G_MAT.transmitcolor

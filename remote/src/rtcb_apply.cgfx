@@ -1,0 +1,24 @@
+#include "output.cg"
+
+uniform float4 uColor:FBColor;
+uniform float4 uColorBleeding:FBColorBleeding;
+uniform float uRTAO:FBAmbientOcclusion;
+//--------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
+//@
+float4 occludeCB() outputs(COLOR)
+{
+    float4 finalColor = uColorBleeding * uColor;
+    return float4(uRTAO * finalColor.xyz, finalColor.w);
+}
+//@
+//--------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
+technique Main
+{
+    pass rtcb_apply <
+        string output = "FBColor";>
+    {
+        FragmentProgram = compile fp40 occludeCB();
+    }
+}

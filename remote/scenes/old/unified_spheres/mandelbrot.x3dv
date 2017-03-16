@@ -1,0 +1,41 @@
+#X3D V3.0 utf8
+
+PROFILE Full
+
+Viewpoint {
+  position 0 0 2.5
+  fieldOfView 0.785398
+}
+
+PointLight {
+   location 0.5 1.5 3.5
+   color 1 1 1
+}
+
+Transform {
+   children Shape {
+      appearance Appearance {
+     shaders PackagedShader {
+        field SFBool vectorize TRUE
+        field SFBool specialize TRUE
+         
+         #constants for mandelbrot
+	 exposedField SFFloat translateX 0
+	 exposedField SFFloat translateY 0
+         exposedField SFFloat scale 1
+         exposedField SFFloat min_cx -2
+         exposedField SFFloat min_cy -1
+	 exposedField SFFloat pa_x 3
+         exposedField SFFloat pa_y 2.25
+         exposedField SFInt32 maxIterations 80
+         exposedField SFFloat maxSquaredValue 100000
+	 exposedField SFBool  colored TRUE
+         
+	 url "rtfact:AnySL:MandelbrotShader.bc"
+	 #url "rtfact:JIT:MandelbrotShader.bc"
+      }
+      material Material { }
+    }
+    geometry Sphere {}
+  }
+}

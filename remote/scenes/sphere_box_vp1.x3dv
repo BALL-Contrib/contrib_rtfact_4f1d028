@@ -1,0 +1,44 @@
+#X3D V3.0 utf8
+
+PROFILE Full
+
+Viewpoint {
+  position 0 0 3
+  orientation -0.001 0.0 0.0 0.001
+  fieldOfView 0.785398
+}
+
+#pointlight in front of viewpoint
+DEF PointLight1 PointLight {
+   location 0.5 0 3
+   color 1 1 1
+}
+
+#pointlight behind teapot
+DEF PointLight2 PointLight {
+  location 2 0 -3
+  color 1 1 1
+}
+
+Transform {
+   children Shape {
+      appearance Appearance {
+	    shaders DEF SHADER0 PackagedShader { }
+	    material Material { }
+      }
+      geometry Sphere {
+      }
+   }
+}
+
+Transform {
+   scale 4 4 4
+   children Shape {
+      appearance Appearance {
+	    shaders DEF SHADER1 PackagedShader { }
+	    material Material { }
+      }
+      geometry Box {
+      }
+   }
+}

@@ -1,0 +1,201 @@
+#include "output.cg"
+
+uniform int2 uRes:WindowRes;
+uniform samplerRECT uDistanceTexture:FBDistance;
+uniform float uDistance:FBDistance;
+uniform float uAORadius:AORadius;
+uniform float uFocusDistance:FocusDistance;
+uniform float3x3 uTransform_ws2es:EyeTransform;
+uniform float3 uNormal_ws:FBNormal;
+uniform float uTangentBias:AOTangentBias;
+varying float2 vFragment:TEXCOORD0;
+//--------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
+//@
+const int DIRECTION_COUNT=8;
+const float INV_DIRECTION_COUNT=0.125;
+const float DIRECTION_STEP=0.785398;    //PI/4
+
+const float MAX_SAMPLE_COUNT=8.0;
+const float SAMPLE_STEP=2.0;
+
+const float EPS=1e-2;
+
+float3 cameraX=0.0.xxx,cameraY=0.0.xxx,cameraZ=0.0.xxx;
+float2 screenHalf;
+//--------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
+void computeCameraVectors()
+{
+    float invResY=1.0/float(uRes.y);
+    cameraX=float3(2.0*invResY, 0.0, 0.0);
+    cameraY=float3(0.0, 2.0*invResY, 0.0);
+    cameraZ=float3(-float(uRes.x)*invResY, -1.0, uFocusDistance);
+}
+//--------------------------------------------------------------------------------------------------
+float3 transform_ws2es(
+    float3 aVector_ws)
+{
+    return mul(uTransform_ws2es,aVector_ws);
+}
+//--------------------------------------------------------------------------------------------------
+float2 project(
+    float3 aPoint_es)
+{
+    float scale=uFocusDistance/aPoint_es.z;
+    return 0.5*float(uRes.y)*scale*aPoint_es.xy+screenHalf;
+}
+//--------------------------------------------------------------------------------------------------
+float3 castRay(
+    float2 aSample_is)
+{
+    return normalize(
+        cameraX*aSample_is.x+
+        cameraY*aSample_is.y+
+        cameraZ);
+}
+//--------------------------------------------------------------------------------------------------
+float3 unproject(
+    float3 aVector_is)
+{
+    //ToDo: make it work correctly (there seems to be slight error in Z - it's slightly spherical)
+    float3 ray=castRay(aVector_is.xy);
+    return ray*aVector_is.z;
+}
+//--------------------------------------------------------------------------------------------------
+float projectCircleRadius(
+    float aRadius,
+    float3 aPoint_es,
+    float2 aPoint_is)
+{
+    float2 projected=project(aPoint_es+float3(aRadius,0.0,0.0));
+    return (projected-aPoint_is).x;
+}
+//--------------------------------------------------------------------------------------------------
+float2 snapToPixel(
+    float2 aPoint)
+{
+    return floor(aPoint)+0.5.xx;
+}
+//--------------------------------------------------------------------------------------------------
+float3 samplePlane(
+    float2 aSample,
+    float4 aPlane)
+{
+    float3 ray=castRay(aSample);
+    return ray * -aPlane.w/dot(ray,aPlane.xyz);
+}
+//--------------------------------------------------------------------------------------------------
+float3 differential(
+    float3 aLesser,
+    float3 aCenter,
+    float3 aGreater)
+{
+    return 0.5*(aGreater-aLesser);
+}
+//--------------------------------------------------------------------------------------------------
+float attenuateAO(
+    float aQuotient2)
+{
+    return 1.0-aQuotient2;
+}
+//--------------------------------------------------------------------------------------------------
+float computeAO(
+    float3 aCurrentFragment_is)
+{
+    if (
+        aCurrentFragment_is.z==1.0)
+    {
+        //no AO on background fragments
+        return 0.0;
+    }
+    float dirAngle=0.0;
+    float3 currentFragment_es=unproject(aCurrentFragment_is);
+    float3 normal_es=transform_ws2es(uNormal_ws);
+    float aoRadius_es = ( uAORadius!=0.0 ? uAORadius : 0.5 );  //temp
+    float aoRadius_is=projectCircleRadius(aoRadius_es,currentFragment_es,aCurrentFragment_is.xy);
+    float aoRadius2_es=aoRadius_es*aoRadius_es;
+    float invAORadius2_es=1.0/aoRadius2_es;
+    float totalAO=0.0;
+    float3 dFes_dXis,dFes_dYis;   //d(Fragment_es)/d(X_is), d(Fragment_es)/d(Y_is)
+    {
+        float4 plane=float4(normal_es,-dot(normal_es,currentFragment_es));
+        float3 east_es=samplePlane(aCurrentFragment_is.xy+float2(1.0,0.0),plane);
+        float3 west_es=samplePlane(aCurrentFragment_is.xy+float2(-1.0,0.0),plane);
+        float3 north_es=samplePlane(aCurrentFragment_is.xy+float2(0.0,1.0),plane);
+        float3 south_es=samplePlane(aCurrentFragment_is.xy+float2(0.0,-1.0),plane);
+        dFes_dXis=differential(west_es,currentFragment_es,east_es);
+        dFes_dYis=differential(south_es,currentFragment_es,north_es);
+    }
+    for (
+        int idxDir=0;
+        idxDir<DIRECTION_COUNT;
+        ++idxDir,dirAngle+=DIRECTION_STEP)
+    {
+        float sinHorizonAngle=0.0;
+        float2 currentSample_is=aCurrentFragment_is.xy;
+        float2 dir=float2(cos(dirAngle),sin(dirAngle));
+        float2 dirStep=dir*(SAMPLE_STEP/max(abs(dir.x),abs(dir.y)));  //dir scaled so that the abs-greater component is +-SAMPLE_STEP
+        float sinTangent;
+        {
+            float3 tangent_es=(dirStep.x*dFes_dXis + dirStep.y*dFes_dYis);
+            float tangentAngle=max( uTangentBias+atan(tangent_es.z,length(tangent_es.xy)), -1.57096);   //PI/2
+            sinTangent=sin(tangentAngle);
+        }
+        float lastAO=0.0;
+        int sampleCount=int(min(MAX_SAMPLE_COUNT,ceil(aoRadius_is)));
+        for (
+            int idxSample=0;idxSample<sampleCount;++idxSample)
+        {
+            currentSample_is+=dirStep;
+            float2 currentSamplePixel_is=snapToPixel(currentSample_is);
+            if (
+                any(currentSamplePixel_is < 0.0.xx) ||
+                any(currentSamplePixel_is > uRes))
+            {
+                //moved out of image - terminate this direction
+                idxSample=sampleCount;  //Cg doesn't support 'break;'
+            }
+            else
+            {
+                float3 currentSample_es=unproject(float3(currentSamplePixel_is, texRECT(uDistanceTexture,currentSamplePixel_is)));
+                float dist2_es=dot(currentSample_es-currentFragment_es,currentSample_es-currentFragment_es);
+                if (
+                    dist2_es<=aoRadius2_es)
+                {
+                    float sampleSinHorizonAngle=(currentSample_es.z-currentFragment_es.z)/sqrt(dist2_es);
+                    if (
+                        sinHorizonAngle>sampleSinHorizonAngle+EPS)  //remember the angles are negative
+                    {
+                        sinHorizonAngle=sampleSinHorizonAngle;
+                        float ao=max(sinTangent-sinHorizonAngle,0.0);
+                        totalAO+=attenuateAO(dist2_es*invAORadius2_es)*(ao-lastAO);
+                        lastAO=ao;
+                    }
+                }
+            }
+        }
+    }
+    return totalAO*INV_DIRECTION_COUNT;
+}
+//--------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
+float4 ssao() outputs(COLOR)
+{
+    screenHalf=0.5*uRes;
+    computeCameraVectors();
+    float3 currentFragment_is=float3(vFragment,uDistance);
+    return computeAO(currentFragment_is).xxxx;
+}
+//@
+//--------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
+technique Main
+{
+    pass compute_ssao <
+        string output = "SSAO";
+        string outSwizzle = "x";>
+    {
+        FragmentProgram = compile fp40 ssao();
+    }
+}

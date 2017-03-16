@@ -1,0 +1,30 @@
+#VRML V2.0 utf8
+
+Viewpoint {
+  fieldOfView 0.785398
+  position 0 0 2.5
+}
+DEF PointLight1 PointLight {
+  color 1 1 1
+  location 0.5 1.5 3.5
+}
+Transform {
+  children Shape {
+    appearance Appearance {
+      material Material { }
+      shaders DEF Shader PackagedShader {
+        field SFBool vectorize TRUE
+		field SFBool specialize FALSE #TODO: change! (-> assertion)
+        field SFBool syncParams FALSE
+
+        exposedField SFFloat alpha 0.3
+
+        exposedField SFString texture1 "uray.png"
+        exposedField SFString texture2 "teapot.png"
+        url "rtfact:AnySL:TextureMixShader.bc"
+      }
+    }
+    geometry Box { }
+  }
+}
+

@@ -1,0 +1,40 @@
+#X3D V3.0 utf8
+
+PROFILE Full
+
+Viewpoint {
+  position 0 0 2.5
+  fieldOfView 0.785398
+}
+
+PointLight {
+   location 0.5 1.5 3.5
+   color 1 1 1
+}
+
+Transform {
+   children Shape {
+      appearance Appearance {
+     shaders PackagedShader {
+        field SFBool vectorize FALSE
+        field SFBool specialize TRUE
+
+	    exposedField SFColor ambientColor 0.1 0.1 0.1
+	    exposedField SFColor diffuseColor 1 1 1
+	    exposedField SFColor specularColor 0.6 0.6 0.6
+	    exposedField SFFloat kg 0.9
+	    exposedField SFColor brickColor 1 .15 .14
+	    exposedField SFColor mortarColor .4 .4 .4
+	    exposedField SFFloat brickWidth 0.25
+	    exposedField SFFloat brickHeight 0.08
+	    exposedField SFFloat mortarThickness 0.01
+	    exposedField SFFloat s_scale 1
+	    exposedField SFFloat t_scale 1
+
+	    url "rtfact:AnySL:rsl_brick.bc"
+      }
+      material Material { }
+    }
+    geometry Sphere {}
+  }
+}

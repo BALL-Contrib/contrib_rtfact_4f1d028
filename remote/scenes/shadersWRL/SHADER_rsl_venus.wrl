@@ -1,0 +1,18 @@
+#VRML V2.0 utf8
+
+PackagedShader {
+    exposedField SFBool packetize TRUE
+    exposedField SFBool specialize TRUE
+    exposedField SFBool syncParams TRUE
+    
+    exposedField SFFloat Ka 1
+    exposedField SFFloat Kd 1
+    exposedField SFFloat offset 0.5
+    exposedField SFFloat scale 0.7
+    exposedField SFFloat twist 0.5
+    exposedField SFFloat omega 0.675
+    exposedField SFFloat octaves 4
+    exposedField SFColor Cc 1 1 0
+
+    url "rtfact:AnySL:rsl_KMVenus.bc"
+}

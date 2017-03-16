@@ -1,0 +1,374 @@
+#include "Precompiled.hpp"
+#ifndef EXCLUDE_FROM_BUILD
+
+// =============================================================================
+// SCENES
+// =============================================================================
+
+#include <RTfact/Model/Scene/BasicScene.hpp>
+
+// =============================================================================
+// RENDERERS
+// =============================================================================
+
+#include <RTfact/Model/Renderer/BasicSurfaceRayTracer.hpp>
+#include <RTfact/Model/Renderer/OpenGLRenderer.hpp>
+#include <RTfact/Model/Renderer/BVHDebugOpenGLRenderer.hpp>
+
+// =============================================================================
+// CAMERAS
+// =============================================================================
+
+#include <RTfact/Model/Camera/PinholeCamera.hpp>
+#include <RTfact/Model/Camera/RasterizationCamera.hpp>
+
+// =============================================================================
+// PIXEL SAMPLERS
+// =============================================================================
+
+#include <RTfact/Model/PixelSampler/BasicPixelSampler.hpp>
+
+// =============================================================================
+// PRIMITIVES
+// =============================================================================
+
+#include <RTfact/Model/Primitive/BVH.hpp>
+#include <RTfact/Model/Primitive/Triangle.hpp>
+
+// =============================================================================
+// BUILDERS
+// =============================================================================
+
+#include <RTfact/Model/Builder/SAHBVHBuilder.hpp>
+
+// =============================================================================
+// INTERSECTORS
+// =============================================================================
+
+#include <RTfact/Model/Intersector/BVHIntersector.hpp>
+#include <RTfact/Model/Intersector/PlueckerTriangleIntersector.hpp>
+
+// =============================================================================
+// SHADING
+// =============================================================================
+
+#include <RTfact/Concept/Light.hpp>
+#include <RTfact/Model/Integrator/SimpleIntegrator.hpp>
+
+#include <RTfact/Model/Image/BasicImage2D.hpp>
+#include <RTfact/Model/EnvironmentTexture/Float3ConstantEnvironmentTexture.hpp>
+
+// =============================================================================
+// CONTROLLERS
+// =============================================================================
+
+#include <RTfact/Utils/UI/Controllers/CameraController.hpp>
+#include <RTfact/Utils/UI/Controllers/ApplicationController.hpp>
+
+#include "AccelStructDebugApplicationContoller.hpp"
+
+// =============================================================================
+// WINDOWS & FRAMEBUFFERS
+// =============================================================================
+
+#include <RTfact/Utils/UI/Windows/SDLGLWindow.hpp>
+
+#include <RTfact/Model/Framebuffer/Image2DFramebuffer.hpp>
+
+// =============================================================================
+// INPUT/OUTPUT
+// =============================================================================
+
+#include <RTfact/Utils/IO/Loader.hpp>
+#include <RTfact/Utils/IO/Loaders/TriangleMeshOBJLoader.hpp>
+#include <RTfact/Utils/IO/Loaders/Image2DLoaderTGA.hpp>
+
+#include <RTfact/Utils/Populators/BasicTriangleMeshPopulator.hpp>
+#include <RTfact/Utils/Populators/OBJMaterialCreator.hpp>
+
+#include <RTfact/Utils/IO/SerializationUtils.hpp>
+#include <RTfact/Utils/IO/Configuration.hpp>
+
+// =============================================================================
+// MISC
+// =============================================================================
+
+#include <RTfact/Utils/FPSMeter.hpp>
+#include <RTfact/Utils/StaticInitializer.hpp>
+#include <RTfact/Utils/System/TimeMeasurer.hpp>
+
+// For RTfact initialization - should be included only once and in the CPP that
+// defines the main() function
+#include <RTfact/Config/Init.hpp>
+
+// =============================================================================
+
+using namespace RTfact;
+
+// Scene
+typedef BasicScene<Material, Light, Triangle, Float3ConstantEnvironmentTexture>
+    t_Scene;
+
+// Renderers
+typedef BasicSurfaceRayTracer                           t_RTRenderer;
+typedef BVHOpenGLDebugRenderer                          t_DebugRenderer;
+typedef OpenGLRenderer                                  t_HardwareRenderer;
+
+// Cameras
+typedef PinholeCamera                                   t_RTCamera;
+typedef RasterizationCamera                             t_RasterizationCamera;
+
+// Ray tracing components
+typedef BasicPixelSampler                               t_PixelSampler;
+typedef BVH<Triangle>                                   t_Tree;
+typedef SAHBVHBuilder                                   t_Builder;  
+typedef BVHIntersector<PlueckerTriangleIntersector>     t_Intersector;
+typedef SimpleIntegrator                                t_Integrator;
+
+// Framebuffer and window
+typedef BasicImage2D<float>                             t_FramebufferImage;
+typedef Image2DFramebuffer<t_FramebufferImage>  t_Framebuffer;
+typedef UI::SDLGLWindow                                 t_Window;
+
+class MainApp
+{
+public:
+
+    int run(
+        IO::Configuration& aConfig,
+        const std::string& aConfigDir="")
+    {
+        const RTfact::uint resx = aConfig["resX"].as<RTfact::uint>();
+        const RTfact::uint resy = aConfig["resY"].as<RTfact::uint>();
+
+        const bool fullScreen = aConfig.exists("fullScreen") ?
+            aConfig["fullScreen"].as<bool>() :
+            false;
+
+        // =====================================================================
+        // Create basic components
+        // =====================================================================
+
+        Traits<t_Scene>::Ptr scene;
+
+        t_RTCamera              rtCamera;
+        t_RTRenderer            rtRenderer;
+
+        t_RasterizationCamera   rasterCamera;
+        t_DebugRenderer         debugRenderer;
+        t_HardwareRenderer      hardwareRenderer;
+
+        t_Tree                  rtTree;
+        t_Builder               rtBuilder;
+        t_Intersector           rtIntersector;
+        t_PixelSampler          rtPixelSampler;
+        t_Integrator            integrator;
+
+        t_Window                window;
+        t_Framebuffer           framebuffer;
+
+        framebuffer.setColorImage(new t_FramebufferImage(3, resx, resy));
+
+        // =====================================================================
+        // Load the scene
+        // =====================================================================
+
+        RTFACT_LOG("Loading scene data... ");
+
+        scene = IO::Loader<t_Scene>::load(configPath(aConfigDir,aConfig["scene"]), aConfig);
+
+        RTFACT_LOG_LINE("done.");
+
+        // =====================================================================
+        // Build acceleration structure for ray tracing
+        // =====================================================================
+
+        RTFACT_LOG("Building ray tracing acceleration structure... ");
+
+        TimeMeasurer buildTimeMeasurer;
+        buildTimeMeasurer.start();
+
+        rtBuilder.build(rtTree, scene->primitives.begin(),
+            scene->primitives.end(),
+            boost::lambda::bind(&Triangle::getBounds, boost::lambda::_1));
+
+        buildTimeMeasurer.stop();
+
+        RTFACT_LOG_LINE_F("done (%1% seconds).",
+                          (buildTimeMeasurer.getTotalTime() / 1000.0));
+
+        // =====================================================================
+        // Initialize window, cameras, and controllers
+        // =====================================================================
+        
+        window.init(resx, resy, fullScreen);
+        window.setCaption("RTfact rasterization demo");
+
+        UI::CameraController cameraController(window, rtTree.getBounds());
+
+        RasterizationCamera::Params camParams;
+
+        camParams.position     = aConfig["cameraPos"].as<Vec3f1>();
+        camParams.direction    = aConfig["cameraDir"].as<Vec3f1>().normalize();
+        camParams.up           = aConfig["cameraUp"].as<Vec3f1>().normalize();
+        camParams.openingAngle = aConfig["cameraOpeningAngle"].as<float>();
+        camParams.resX         = aConfig["resX"].as<uint>();
+        camParams.resY         = aConfig["resY"].as<uint>();
+
+        cameraController.setParams(camParams);
+
+        rasterCamera.setParams(camParams);
+        rtCamera.setParams(camParams);
+
+        AccelStructDebugApplicationContoller appController(window, 3);
+
+        FPSMeter fpsMeter;
+
+        // =====================================================================
+        // Initialize rendering components
+        // =====================================================================
+
+        rtIntersector.init(*scene);
+        rtRenderer.init(*scene, rtTree, rtIntersector, rtCamera);
+
+        debugRenderer.init(rasterCamera, *scene);
+        hardwareRenderer.init(rasterCamera, *scene);
+
+        // =====================================================================
+        // Start rendering loop
+        // =====================================================================
+
+        RTFACT_LOG_LINE("Starting rendering...");
+        
+        for(;;)
+        {
+            ImageClipRegion clip(
+                0, 0,
+                framebuffer.getColorImage()->getResX(),
+                framebuffer.getColorImage()->getResY());
+
+            fpsMeter.startFrame();
+
+            switch(appController.getSetting())
+            {
+            case 0:
+
+                debugRenderer.render(
+                    rasterCamera, *scene, rtTree, appController.getTreeLevel());
+                break;
+
+            case 1:
+
+                framebuffer.prePaint();
+
+                rtRenderer.render<256>(
+                    rtCamera, *scene, rtTree, rtIntersector,
+                    rtPixelSampler, integrator, framebuffer, clip);
+
+                framebuffer.postPaint();
+
+                window.update(*framebuffer.getColorImage());
+
+                break;
+
+            case 2:
+
+                hardwareRenderer.render(rasterCamera, *scene);
+                break;
+            }
+           
+            fpsMeter.endFrame();
+
+            RTFACT_LOG_F("FPS: %3.1f           \r", fpsMeter.getFPS());
+
+            window.display();
+            
+            window.handleEvents();
+
+            cameraController.applyChanges();
+            cameraController.getParams(camParams);
+            cameraController.acceptChanges();
+
+            rtCamera.setParams(camParams);
+            rasterCamera.setParams(camParams);
+
+            if(appController.shouldTerminate())
+            {
+                break;
+            }
+
+            RTfact::uint newResX, newResY;
+            
+            if(appController.shouldResize(newResX, newResY))
+            {
+                framebuffer.setColorImage(new t_FramebufferImage(3, newResX, newResY));
+
+                window.init(newResX, newResY, fullScreen);
+
+                camParams.resX = newResX;
+                camParams.resY = newResY;
+
+                rtCamera.setParams(camParams);
+                rasterCamera.setParams(camParams);
+                cameraController.setParams(camParams);
+            }
+
+            appController.acceptChanges();
+        }
+
+        return 0;
+    }
+
+protected:
+    static std::string configPath(
+        const std::string &aConfigDir,
+        const IO::Configuration::Entry &aPathEntry)
+    {
+        if (
+            IO::isPathAbsolute(aPathEntry))
+        {
+            return aPathEntry;
+        }
+        else
+        {
+            return IO::appendPath(aConfigDir,aPathEntry);
+        }
+    }
+};
+
+int main(int argc, char** argv)
+{
+    typedef BasicImage2D<float> t_Float3Image;
+
+    typedef BasicTriangleMeshPopulator<
+        t_Scene, OBJMaterialCreator<t_Scene::AppearanceBase> >
+        t_ScenePopulator;
+
+    IO::Loader<t_Scene>::registerLoader(
+        ".obj", new IO::TriangleMeshOBJLoader<t_Scene, t_ScenePopulator>);
+
+    IO::Loader<BasicImage2D<float> >::registerLoader(
+        ".tga", new IO::Image2DLoaderTGA<BasicImage2D<float> >);
+
+    std::string configDir = (argc == 2) ? argv[1] : "RTfact.ini";
+    IO::Configuration config;
+
+    try
+    {
+        config.loadFromFile(configDir);
+        RTFACT_LOG_LINE_F("Using configuration file %1%", configDir);
+        configDir = IO::getParentDirectory(configDir);
+    }
+    catch(RTfact::ProgramException& e)
+    {
+        RTFACT_LOG_LINE(e.getMessage());
+
+        RTFACT_BREAK_CONSOLE();
+
+        return 1;
+    }
+
+    MainApp app;
+    return app.run(config,configDir);
+}
+#endif

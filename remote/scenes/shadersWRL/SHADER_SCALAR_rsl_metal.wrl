@@ -1,0 +1,14 @@
+#VRML V2.0 utf8
+
+PackagedShader {
+    exposedField SFBool packetize FALSE
+    exposedField SFBool specialize TRUE
+    exposedField SFBool syncParams TRUE
+
+exposedField SFFloat Ka 1
+exposedField SFFloat Ks 1
+exposedField SFFloat roughness .1
+exposedField SFColor Cc 0.2 0.8 0.8
+
+    url "rtfact:AnySL:rsl_metal.bc"
+}

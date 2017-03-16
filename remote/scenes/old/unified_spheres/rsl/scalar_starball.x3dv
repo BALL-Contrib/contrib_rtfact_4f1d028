@@ -1,0 +1,33 @@
+#X3D V3.0 utf8
+
+PROFILE Full
+
+Viewpoint {
+  position 0 0 2.5
+  fieldOfView 0.785398
+}
+
+PointLight {
+   location 0.5 1.5 3.5
+   color 1 1 1
+}
+
+Transform {
+   children Shape {
+      appearance Appearance {
+     shaders PackagedShader {
+        field SFBool vectorize FALSE
+        field SFBool specialize TRUE
+
+	    exposedField SFFloat Ka 1.0
+	    exposedField SFFloat Kd 0.5
+	    exposedField SFFloat Ks 0.5
+	    exposedField SFFloat roughness 0.1
+
+	    url "rtfact:AnySL:rsl_starball.bc"
+      }
+      material Material { }
+    }
+    geometry Sphere {}
+  }
+}

@@ -1,0 +1,42 @@
+#X3D V3.0 utf8
+
+PROFILE Full
+
+Viewpoint {
+  position 0 0 2.5
+  fieldOfView 0.785398
+}
+
+PointLight {
+   location 0.5 1.5 3.5
+   color 1 1 1
+}
+
+Transform {
+   children Shape {
+      appearance Appearance {
+     shaders PackagedShader {
+        field SFBool vectorize TRUE
+        field SFBool specialize TRUE
+
+exposedField SFFloat Ka 0.0
+exposedField SFFloat Kd 0.0
+exposedField SFFloat Ks 0.5
+exposedField SFFloat Kr 1.0       # reflective coefficient
+exposedField SFFloat Kt 0.7       # transmissive coefficient
+exposedField SFFloat roughness 0.05
+exposedField SFFloat blur 0.0
+exposedField SFFloat eta 1.5      # index of refraction
+exposedField SFColor specularcolor 1.0 1.0 1.0
+exposedField SFColor transmitcolor 1.0 1.0 1.0
+exposedField SFFloat samples 1.0
+exposedField SFFloat maxDepth 2.0
+
+	    url "rtfact:AnySL:GlassShader.bc"
+	    #url "rtfact:JIT:GlassShader.bc"
+      }
+      material Material { }
+    }
+    geometry Sphere {}
+  }
+}

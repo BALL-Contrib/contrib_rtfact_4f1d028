@@ -1,0 +1,50 @@
+; Camera opening angle
+cameraOpeningAngle=70
+
+; Controls console warnings output
+warnings=true
+
+; Framebuffer resolution
+resX=512
+resY=512
+
+; Fullscreen window
+fullScreen=false
+
+; Which of the configurations (speficied below) should be set as active
+use=Venice
+
+; Whether to play a camera animation specified with the animationFile property
+;play
+
+; Whether to output the rendered frames
+;outputVideoSequence
+
+; Directory to output a video image sequence
+;videoSequenceDir=video
+
+;===============================================================================
+[Venice]
+
+; Input scene OBJ file
+scene=scenes/venice/obj/venice_statues.obj
+
+; Extended scene info file (doesn't have to have .objx extension)
+sceneEx=scenes/venice/obj/venice_statues.objx
+
+; Acceleration structure dump output file
+;accelStructDumpOutput=scenes/venice/obj/venice_statues_bvh.dat
+
+; Acceleration structure dump input file
+accelStructDumpInput=scenes/venice/obj/venice_statues_bvh.dat
+
+; Directory prefix for textures (always relative to the scene file directory)
+textureDir=textures
+
+; Camera parameters
+cameraPos=136.7, 334.6, -575
+cameraDir=0.403647, -0.281768, 0.870446
+cameraUp=0,1,0
+
+; Animation file (9 floats in a row, separated by spaces - position, direction, up vector
+;animationFile=scenes/venice/obj/anim.txt

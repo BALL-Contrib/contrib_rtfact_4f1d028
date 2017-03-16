@@ -1,0 +1,21 @@
+#VRML V2.0 utf8
+
+PackagedShader {
+    exposedField SFBool packetize FALSE
+    exposedField SFBool specialize TRUE
+    exposedField SFBool syncParams TRUE
+
+    exposedField SFColor ambientColor 0.1 0.1 0.1
+    exposedField SFColor diffuseColor 1 1 1
+    exposedField SFColor specularColor 0.6 0.6 0.6
+    exposedField SFFloat kg 0.9
+    exposedField SFColor brickColor 1 .15 .14
+    exposedField SFColor mortarColor .4 .4 .4
+    exposedField SFFloat brickWidth 0.25
+    exposedField SFFloat brickHeight 0.08
+    exposedField SFFloat mortarThickness 0.01
+    exposedField SFFloat s_scale 1
+    exposedField SFFloat t_scale 1
+
+    url "rtfact:AnySL:rsl_brick.bc"
+}

@@ -1,0 +1,189 @@
+# 
+# Wavefront material file
+# Converted by the DEEP Exploration  Deep Exploration 4.0.10.871 Release
+# Right Hemisphere, LTD
+# http://www.righthemisphere.com/
+# 
+
+newmtl ceiling
+Ka 0.0 0.0 0.0
+Kd 0.0 0.0 0
+#Refl 0.2 0.2 0.2
+Ks 0 0 0
+
+newmtl pipe
+Ka 0.3 0.18 0.15
+Kd 0.5 0.5 0.5
+Ks 3 2.5 2
+#Refl 0.7 0.7 0.7
+illum 2
+Ns 64
+
+newmtl gong
+Ka 0.3 0.18 0.15
+Kd 0.5 0.5 0.1
+Ks 4 4 2
+illum 2
+Ns 64
+map_Kd unreal.tga
+
+newmtl sp_00_luk_mali
+Ka 0.1 0.1 0.1
+Kd 1 1 1
+Ks 0.4 0.4 0.4
+illum 2
+Ns 64
+map_Kd sp_luk.tga
+
+newmtl sp_svod_kapitel
+Ka 0.1 0.1 0.1
+Kd 0.713726 0.705882 0.658824
+Ks 0.4 0.4 0.4
+illum 2
+Ns 64
+map_Kd 00_skap.tga
+
+newmtl sp_01_stub_baza_
+Ka 0.1 0.1 0.1
+Kd 0.784314 0.784314 0.784314
+Ks 0.4 0.4 0.4
+illum 2
+Ns 8
+map_Kd sp_01_stup_baza.tga
+
+newmtl sp_01_stub_kut
+Ka 0.1 0.1 0.1
+Kd 0.737255 0.709804 0.670588
+Ks 0.4 0.4 0.4
+illum 2
+Ns 64
+map_Kd 01_stub.tga
+
+newmtl sp_00_stup
+Ka 0.1 0.1 0.1
+Kd 0.737255 0.709804 0.670588
+Ks 0.4 0.4 0.4
+illum 2
+Ns 64
+map_Kd 01_stub.tga
+
+newmtl sp_01_stub_baza
+Ka 0.1 0.1 0.1
+Kd 0.8 0.784314 0.74902
+Ks 0.4 0.4 0.4
+illum 2
+Ns 64
+map_Kd 01_s_ba.tga
+
+newmtl sp_00_luk_mal1
+Ka 0.1 0.1 0.1
+Kd 0.745098 0.709804 0.67451
+Ks 0.4 0.4 0.4
+illum 2
+Ns 64
+map_Kd 01_st_kp.tga
+
+newmtl sp_01_stub
+Ka 0.1 0.1 0.1
+Kd 0.737255 0.709804 0.670588
+Ks 0.4 0.4 0.4
+illum 2
+Ns 64
+map_Kd 01_stub.tga
+
+newmtl sp_01_stup
+Ka 0.1 0.1 0.1
+Kd 0.827451 0.8 0.768628
+Ks 0.4 0.4 0.4
+illum 2
+Ns 64
+map_Kd x01_st.tga
+
+newmtl sp_vijenac
+Ka 0.1 0.1 0.1
+Kd 0.713726 0.705882 0.658824
+Ks 0.4 0.4 0.4
+illum 2
+Ns 64
+map_Kd 00_skap.tga
+
+newmtl sp_00_pod
+Ka 0.6 0.6 0.6
+Kd 1 1 1
+Ks 0.4 0.4 0.4
+#Refl 0.2 0.2 0.2
+illum 2
+Ns 64
+map_Kd kamen.tga
+
+newmtl sp_00_svod
+Ka 0.345098 0.345098 0.345098
+Kd 0.941177 0.866667 0.737255
+Ks 0.85098 0.807843 0.733333
+#Refl 0.22 0.22 0.22
+illum 2
+Ns 2.14355
+
+newmtl sp_02_reljef
+Ka 0.1 0.1 0.1
+Kd 1 1 1
+Ks 0.4 0.4 0.4
+illum 2
+Ns 64
+map_Kd reljef.tga
+
+newmtl sp_01_luk_a
+Ka 0.1 0.1 0.1
+Kd 1 1 1
+Ks 0.4 0.4 0.4
+illum 2
+Ns 64
+map_Kd sp_luk.tga
+
+newmtl sp_zid_vani
+Ka 0.1 0.1 0.1
+Kd 1 1 1
+Ks 0.4 0.4 0.4
+illum 2
+Ns 64
+map_Kd kamen.tga
+
+newmtl sp_01_stup_baza
+Ka 0.1 0.1 0.1
+Kd 0.8 0.784314 0.74902
+Ks 0.4 0.4 0.4
+illum 2
+Ns 64
+map_Kd 01_s_ba.tga
+
+newmtl sp_00_zid
+Ka 0.1 0.1 0.1
+Kd 1 1 1
+Ks 0.4 0.4 0.4
+illum 2
+Ns 64
+map_Kd kamen.tga
+
+newmtl sp_00_prozor
+Ka 0.1 0.1 0.1
+Kd 1 1 1
+Ks 0.4 0.4 0.4
+illum 2
+Ns 64
+map_Kd prozor1.tga
+
+newmtl sp_00_vrata_krug
+Ka 0.1 0.1 0.1
+Kd 0.784314 0.784314 0.784314
+Ks 0.4 0.4 0.4
+illum 2
+Ns 8
+map_Kd vrata_kr.tga
+
+newmtl sp_00_vrata_kock
+Ka 0.1 0.1 0.1
+Kd 0.784314 0.784314 0.784314
+Ks 0.4 0.4 0.4
+illum 2
+Ns 8
+map_Kd vrata_ko.tga

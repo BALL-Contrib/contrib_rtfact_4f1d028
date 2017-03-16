@@ -1,0 +1,24 @@
+#-*-Python-*-
+Import('env')
+
+platform = env['PLATFORM']
+compiler = env['compiler']
+isWin32 = (platform == 'win32')
+isGCC = (compiler == 'GCC')
+
+sources = Split("""
+Main.cpp
+""")
+
+linkLibs = env.Split('$LIBPNG $LIBJPEG $LIBDL')
+
+# Note: builders like DefaultLibrary returns a list of targets !
+
+env.Append(CPPDEFINES=[('RTFACT_USER_CONFIG_FILE', 'RTfactConfig.hpp')])
+
+if isWin32:
+    env.Program('uray', sources,
+                LIBS=env.Split('SDL SDLmain opengl32 glew32 glu32 gdiplus'))
+else:
+    env.Program('uray', sources,
+                LIBS=env.Split('$LIBSDL $LIBGL $LIBPNG $LIBJPEG GLEW tbb'))

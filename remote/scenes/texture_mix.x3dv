@@ -1,0 +1,66 @@
+#VRML V2.0 utf8
+
+Viewpoint {
+  fieldOfView 0.785398
+  position 0 0 2.5
+}
+DEF PointLight1 PointLight {
+  color 1 1 1
+  location 0.5 1.5 3.5
+}
+Transform {
+  children Shape {
+    appearance Appearance {
+      material Material { }
+      shaders DEF Shader PackagedShader {
+        field SFBool vectorize FALSE
+        field SFBool specialize FALSE
+        field SFBool syncParams TRUE
+
+        exposedField SFFloat alpha 0.3
+#        exposedField SFString shaderLanguage "C++"
+#        exposedField SFString shaderScript "
+##include \"RTfactShader.hpp\"
+#
+#PARAMETER Texture texture1;
+#PARAMETER Texture texture2;
+#PARAMETER float alpha;
+#
+#BEGIN_INIT_PARAM
+#INIT_PARAM(texture1, NO_TEXTURE)
+#INIT_PARAM(texture2, NO_TEXTURE)
+#INIT_PARAM(alpha, 0.5f)
+#END_INIT_PARAM
+#
+#SURFACE_SHADER
+#{
+#		Color c1 = Context::sampleDiffuseTexture(context, texture1, texCoord1, texCoord2, 0.f, 0.f);
+#        Color c2 = Context::sampleDiffuseTexture(context, texture2, texCoord1, texCoord2, 0.f, 0.f);
+#        result = Mix(c1, c2, alpha);
+#        //result = c1;
+#}
+#"
+
+##RSL shader -> does not work?!
+#		exposedField SFString shaderLanguage "RSL"
+#		exposedField SFString shaderScript "
+#surface texture_s(
+#	float alpha = 0.5;
+#)
+#{
+#	color c1 = color texture(\"texture1\");
+#	color c2 = color texture(\"texture2\");
+#	Ci = mix(c1, c2, alpha);
+#}
+#"
+
+        exposedField SFString texture1 "uray.png"
+        exposedField SFString texture2 "teapot.png"
+        #url "rtfact:AnySL"   #if shaderScript is used
+        url "rtfact:AnySL:rsl_texture_mix.bc"
+      }
+    }
+    geometry Box { }
+  }
+}
+

@@ -1,0 +1,68 @@
+* Add texture wrapping modes (simple s,t clamping)
+* Check image loaders for correct component count
+* Add configuration macros documentation
+* Replace int<->float pointer casting with unions
+* Packet<N, float> <-> Packet<N, int> casting
+* ImageClipRegion - xMin, xMax, yMin, yMax
+* Generic triangle
+* Global base pointer
+* Matrix.multiplyTransposed
+* Generic ray packets and RayTraits, and RayGenerator
+* Fix rounding and floors
+* Rename iif to blend
+* Factory for loading materials
+* Template tTriangle in intersectors
+* SSE precision
+
+* Polymorphic serialization (images too)
+
+* Test/fix external includes script
+* 1-sized packets remove all operations
+* Fix Vector<std::string> run-time error
+* Replace Vec3f<1> with Vec3f1
+* Fix Packet<1, float> * int
+* Polymorphic vectors
+* Add IntMap copy constructor and other functionality
+* RTFACT_ENABLE_PROJECTIVE_TRANSFORMATIONS
+* PacketActiveMask constants
+* Add VS debug beautifiers for basic types
+* Vec3f - maxComponent(), maxVec()
+* Fix *_UNARY_ARITH_OP(+)
+* SSE vectors
+    * __cpuid function in intrin.h (check if available on all platforms)
+    * SSE4.1
+    * fix arrangement and getInstance(float4, float)
+    * round/floor functions
+* Packet constants as functions (not members)
+* Packet<4> constants
+* Mask
+	* op Scalar scalar value assertions
+* BitMask data types (int vs unsigned)
+	* Bitmask & (1 or 0xFFFFFFFF)
+* Remove redundant accessors .template stuff
+* Move out vec3f math functions
+* Packets operator ==
+* remove at(), get() methods
+* Replace Packet<1> operations with scalar ones
+* Vec3f::set(index, Vec3f<1> value)
+* Update shuffle uses after adding it in quad packets
+* remove xf, yf, zf from Vec3f<1>
+
+Refactor:
+
+* typedefs with postfix _t
+
+Suggestions:
+
+* Core types
+	* Containers ot 4 smaller containers
+* Packet 
+	* Packet<size, type>   vs   packeti<size>, packetf<size>
+	* Single packet <-> base type
+	* Constants
+* Vec3f
+	* Vec3f<1> - SSE vs R3
+* Ray packets
+	* Templated common origin
+	* AoS vs SoA
+* Generic radiance type

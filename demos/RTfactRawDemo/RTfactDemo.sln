@@ -1,0 +1,88 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RTfactDemo", "RTfactDemo.vcproj", "{DD02A12C-9155-4433-B81C-FCB00E758BD0}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RTfactDemoSCons", "RTfactDemo_SCons.vcproj", "{7D6FEE8A-EDA8-4A68-AECF-FA55CD91C183}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		SCons-ICC-Debug|Win32 = SCons-ICC-Debug|Win32
+		SCons-ICC-Debug|x64 = SCons-ICC-Debug|x64
+		SCons-ICC-Release|Win32 = SCons-ICC-Release|Win32
+		SCons-ICC-Release|x64 = SCons-ICC-Release|x64
+		SCons-VC-Debug|Win32 = SCons-VC-Debug|Win32
+		SCons-VC-Debug|x64 = SCons-VC-Debug|x64
+		SCons-VC-Release|Win32 = SCons-VC-Release|Win32
+		SCons-VC-Release|x64 = SCons-VC-Release|x64
+		VS-AccelStructDebug-Debug|Win32 = VS-AccelStructDebug-Debug|Win32
+		VS-AccelStructDebug-Debug|x64 = VS-AccelStructDebug-Debug|x64
+		VS-AccelStructDebug-Release|Win32 = VS-AccelStructDebug-Release|Win32
+		VS-AccelStructDebug-Release|x64 = VS-AccelStructDebug-Release|x64
+		VS-VC-Debug|Win32 = VS-VC-Debug|Win32
+		VS-VC-Debug|x64 = VS-VC-Debug|x64
+		VS-VC-Preprocess|Win32 = VS-VC-Preprocess|Win32
+		VS-VC-Preprocess|x64 = VS-VC-Preprocess|x64
+		VS-VC-Release|Win32 = VS-VC-Release|Win32
+		VS-VC-Release|x64 = VS-VC-Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.SCons-ICC-Debug|Win32.ActiveCfg = ICC-Debug|Win32
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.SCons-ICC-Debug|x64.ActiveCfg = ICC-Debug|x64
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.SCons-ICC-Release|Win32.ActiveCfg = ICC-Release|Win32
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.SCons-ICC-Release|x64.ActiveCfg = ICC-Release|x64
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.SCons-VC-Debug|Win32.ActiveCfg = VC-Debug|Win32
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.SCons-VC-Debug|x64.ActiveCfg = VC-Debug|x64
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.SCons-VC-Release|Win32.ActiveCfg = VC-Release|Win32
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.SCons-VC-Release|x64.ActiveCfg = VC-Release|x64
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.VS-AccelStructDebug-Debug|Win32.ActiveCfg = VC-AccelStructDebug-Debug|Win32
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.VS-AccelStructDebug-Debug|Win32.Build.0 = VC-AccelStructDebug-Debug|Win32
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.VS-AccelStructDebug-Debug|x64.ActiveCfg = VC-AccelStructDebug-Debug|x64
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.VS-AccelStructDebug-Debug|x64.Build.0 = VC-AccelStructDebug-Debug|x64
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.VS-AccelStructDebug-Release|Win32.ActiveCfg = VC-AccelStructDebug-Release|Win32
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.VS-AccelStructDebug-Release|Win32.Build.0 = VC-AccelStructDebug-Release|Win32
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.VS-AccelStructDebug-Release|x64.ActiveCfg = VC-AccelStructDebug-Release|x64
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.VS-AccelStructDebug-Release|x64.Build.0 = VC-AccelStructDebug-Release|x64
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.VS-VC-Debug|Win32.ActiveCfg = VC-Debug|Win32
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.VS-VC-Debug|Win32.Build.0 = VC-Debug|Win32
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.VS-VC-Debug|x64.ActiveCfg = VC-Debug|x64
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.VS-VC-Debug|x64.Build.0 = VC-Debug|x64
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.VS-VC-Preprocess|Win32.ActiveCfg = VC-Preprocess|Win32
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.VS-VC-Preprocess|Win32.Build.0 = VC-Preprocess|Win32
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.VS-VC-Preprocess|x64.ActiveCfg = VC-Preprocess|x64
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.VS-VC-Preprocess|x64.Build.0 = VC-Preprocess|x64
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.VS-VC-Release|Win32.ActiveCfg = VC-Release|Win32
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.VS-VC-Release|Win32.Build.0 = VC-Release|Win32
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.VS-VC-Release|x64.ActiveCfg = VC-Release|x64
+		{DD02A12C-9155-4433-B81C-FCB00E758BD0}.VS-VC-Release|x64.Build.0 = VC-Release|x64
+		{7D6FEE8A-EDA8-4A68-AECF-FA55CD91C183}.SCons-ICC-Debug|Win32.ActiveCfg = ICC-Debug|Win32
+		{7D6FEE8A-EDA8-4A68-AECF-FA55CD91C183}.SCons-ICC-Debug|Win32.Build.0 = ICC-Debug|Win32
+		{7D6FEE8A-EDA8-4A68-AECF-FA55CD91C183}.SCons-ICC-Debug|x64.ActiveCfg = ICC-Debug|x64
+		{7D6FEE8A-EDA8-4A68-AECF-FA55CD91C183}.SCons-ICC-Debug|x64.Build.0 = ICC-Debug|x64
+		{7D6FEE8A-EDA8-4A68-AECF-FA55CD91C183}.SCons-ICC-Release|Win32.ActiveCfg = ICC-Release|Win32
+		{7D6FEE8A-EDA8-4A68-AECF-FA55CD91C183}.SCons-ICC-Release|Win32.Build.0 = ICC-Release|Win32
+		{7D6FEE8A-EDA8-4A68-AECF-FA55CD91C183}.SCons-ICC-Release|x64.ActiveCfg = ICC-Release|x64
+		{7D6FEE8A-EDA8-4A68-AECF-FA55CD91C183}.SCons-ICC-Release|x64.Build.0 = ICC-Release|x64
+		{7D6FEE8A-EDA8-4A68-AECF-FA55CD91C183}.SCons-VC-Debug|Win32.ActiveCfg = VC-Debug|Win32
+		{7D6FEE8A-EDA8-4A68-AECF-FA55CD91C183}.SCons-VC-Debug|Win32.Build.0 = VC-Debug|Win32
+		{7D6FEE8A-EDA8-4A68-AECF-FA55CD91C183}.SCons-VC-Debug|x64.ActiveCfg = VC-Debug|x64
+		{7D6FEE8A-EDA8-4A68-AECF-FA55CD91C183}.SCons-VC-Debug|x64.Build.0 = VC-Debug|x64
+		{7D6FEE8A-EDA8-4A68-AECF-FA55CD91C183}.SCons-VC-Release|Win32.ActiveCfg = VC-Release|Win32
+		{7D6FEE8A-EDA8-4A68-AECF-FA55CD91C183}.SCons-VC-Release|Win32.Build.0 = VC-Release|Win32
+		{7D6FEE8A-EDA8-4A68-AECF-FA55CD91C183}.SCons-VC-Release|x64.ActiveCfg = VC-Release|x64
+		{7D6FEE8A-EDA8-4A68-AECF-FA55CD91C183}.SCons-VC-Release|x64.Build.0 = VC-Release|x64
+		{7D6FEE8A-EDA8-4A68-AECF-FA55CD91C183}.VS-AccelStructDebug-Debug|Win32.ActiveCfg = VC-Debug|Win32
+		{7D6FEE8A-EDA8-4A68-AECF-FA55CD91C183}.VS-AccelStructDebug-Debug|x64.ActiveCfg = VC-Debug|x64
+		{7D6FEE8A-EDA8-4A68-AECF-FA55CD91C183}.VS-AccelStructDebug-Release|Win32.ActiveCfg = VC-Release|Win32
+		{7D6FEE8A-EDA8-4A68-AECF-FA55CD91C183}.VS-AccelStructDebug-Release|x64.ActiveCfg = VC-Release|x64
+		{7D6FEE8A-EDA8-4A68-AECF-FA55CD91C183}.VS-VC-Debug|Win32.ActiveCfg = VC-Debug|Win32
+		{7D6FEE8A-EDA8-4A68-AECF-FA55CD91C183}.VS-VC-Debug|x64.ActiveCfg = VC-Debug|x64
+		{7D6FEE8A-EDA8-4A68-AECF-FA55CD91C183}.VS-VC-Preprocess|Win32.ActiveCfg = VC-Release|Win32
+		{7D6FEE8A-EDA8-4A68-AECF-FA55CD91C183}.VS-VC-Preprocess|x64.ActiveCfg = VC-Release|x64
+		{7D6FEE8A-EDA8-4A68-AECF-FA55CD91C183}.VS-VC-Release|Win32.ActiveCfg = VC-Release|Win32
+		{7D6FEE8A-EDA8-4A68-AECF-FA55CD91C183}.VS-VC-Release|x64.ActiveCfg = VC-Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

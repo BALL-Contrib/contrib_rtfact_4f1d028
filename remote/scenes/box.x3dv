@@ -1,0 +1,41 @@
+#X3D V3.0 utf8
+
+PROFILE Full
+
+Viewpoint {
+  position 0.33 0.16 0.18
+  orientation -0.001 0.0 0.0 0.001
+  fieldOfView 0.785398
+}
+
+DEF PointLight1 PointLight {
+   location 0 0 3
+   color 0.5 0.5 0.5
+
+}
+
+DEF PointLight2 PointLight {
+   location 0 0 -3
+   color 0.7 0.5 0.4
+
+}
+
+Transform {
+   scale 4 4 4
+   children [
+      Shape {
+        appearance Appearance {
+            shaders DEF SHADER0 PackagedShader { }
+            material Material {
+              diffuseColor 0.2 0.2 0.2
+              emissiveColor 0.2 0.2 0.2
+              shininess 0
+              specularColor 0.2 0.2 0.2
+            }
+        }
+
+	    geometry Box { }
+      }
+   ]
+}
+

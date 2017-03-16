@@ -1,0 +1,40 @@
+#X3D V3.0 utf8
+
+PROFILE Full
+
+#location in front of wall (only one side of box visible, nothing else)
+Viewpoint {
+  position 0 0 2
+  orientation -0.001 0.0 0.0 0.001
+  fieldOfView 0.785398
+}
+
+DEF PointLight1 PointLight {
+   location 0 0 3
+   color 1 1 1
+}
+
+#DEF PointLight2 PointLight {
+#  location 0 0 6
+#  color 1 1 1
+#}
+
+Transform {
+   #scale 4 4 10
+   scale  4 4 4
+   children Shape {
+      appearance Appearance {
+	 shaders PackagedShader {
+	    field SFBool vectorize FALSE
+	    field SFBool specialize TRUE
+	    field SFBool syncParams TRUE
+
+	    url "rtfact:AnySL:TimeShader.bc"
+	 }
+	 material Material { }
+      }
+      geometry Box {
+      }
+   }
+}
+

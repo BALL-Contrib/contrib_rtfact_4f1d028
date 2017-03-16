@@ -1,0 +1,76 @@
+#include "output.cg"
+
+uniform samplerRECT uSSAOTexture:SSAO;
+uniform samplerRECT uDistanceTexture:FBDistance;
+uniform float uDistance:FBDistance;
+uniform float uBlurFalloff:BlurFalloff;
+uniform float uBlurSharpness:BlurSharpness;
+uniform float uKernelRadius:BlurKernelRadius;
+varying float2 vFragment:TEXCOORD0;
+//--------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
+//@
+//--------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
+float blurKernel(
+    float aSampleAO,
+    float aPixelDiff,
+    float aDistDiff,
+    out float aAccumulatedWeight)
+{
+    float weight = exp(-aPixelDiff*aPixelDiff*uBlurFalloff - aDistDiff*aDistDiff*uBlurSharpness);
+    aAccumulatedWeight += weight;
+    return weight*aSampleAO;
+}
+//--------------------------------------------------------------------------------------------------
+float blur(
+    float2 aAxis,
+    float3 aCurrentFragment_is)
+{
+    float accumulatedAO=0.0;
+    float accumulatedWeight=0.0;
+    for (
+        float sampleDist=-uKernelRadius;
+        sampleDist<=uKernelRadius;
+        ++sampleDist)
+    {
+        float2 sample=aCurrentFragment_is.xy+sampleDist*aAxis;
+        accumulatedAO += blurKernel(
+            texRECT(uSSAOTexture,sample),
+            sampleDist,
+            aCurrentFragment_is.z-texRECT(uDistanceTexture,sample),
+            accumulatedWeight);
+    }
+    return accumulatedAO/accumulatedWeight; //accumulatedWeight is guaranteed !=0, because currentFragment's weight is always 1
+}
+//--------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
+float4 blurX() outputs(COLOR)
+{
+    float3 currentFragment_is=float3(vFragment,uDistance);
+    return blur(float2(1.0,0.0),currentFragment_is).xxxx;
+}
+//--------------------------------------------------------------------------------------------------
+float4 blurY() outputs(COLOR)
+{
+    float3 currentFragment_is=float3(vFragment,uDistance);
+    return blur(float2(0.0,1.0),currentFragment_is).xxxx;
+}
+//@
+//--------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
+technique Main
+{
+    pass blurX <
+        string output = "SSAO";
+        string outSwizzle = "x";>
+    {
+        FragmentProgram = compile fp40 blurX();
+    }
+    pass blurY <
+        string output="SSAO";
+        string outSwizzle = "x";>
+    {
+        FragmentProgram = compile fp40 blurY();
+    }
+}

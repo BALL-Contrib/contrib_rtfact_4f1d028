@@ -1,0 +1,1 @@
+#define outputs(maSemantic) :maSemantic

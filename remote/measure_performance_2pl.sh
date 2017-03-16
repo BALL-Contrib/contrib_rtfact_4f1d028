@@ -1,0 +1,26 @@
+echo "TESTING SHADERS..."
+rtsgRTremoteTest scenes/unified_spheres/2pointlights/scalar_brick.x3dv
+rtsgRTremoteTest scenes/unified_spheres/2pointlights/brick.x3dv
+rtsgRTremoteTest scenes/unified_spheres/2pointlights/scalar_checker.x3dv
+rtsgRTremoteTest scenes/unified_spheres/2pointlights/checker.x3dv
+rtsgRTremoteTest scenes/unified_spheres/2pointlights/scalar_glass.x3dv
+rtsgRTremoteTest scenes/unified_spheres/2pointlights/glass.x3dv
+rtsgRTremoteTest scenes/unified_spheres/2pointlights/scalar_granite.x3dv
+rtsgRTremoteTest scenes/unified_spheres/2pointlights/granite.x3dv
+rtsgRTremoteTest scenes/unified_spheres/2pointlights/scalar_mandelbrot.x3dv
+rtsgRTremoteTest scenes/unified_spheres/2pointlights/mandelbrot.x3dv
+rtsgRTremoteTest scenes/unified_spheres/2pointlights/scalar_parquetplank.x3dv
+rtsgRTremoteTest scenes/unified_spheres/2pointlights/parquetplank.x3dv
+rtsgRTremoteTest scenes/unified_spheres/2pointlights/scalar_phong.x3dv
+rtsgRTremoteTest scenes/unified_spheres/2pointlights/phong.x3dv
+rtsgRTremoteTest scenes/unified_spheres/2pointlights/scalar_screen_aa.x3dv
+rtsgRTremoteTest scenes/unified_spheres/2pointlights/screen_aa.x3dv
+rtsgRTremoteTest scenes/unified_spheres/2pointlights/scalar_starball.x3dv
+rtsgRTremoteTest scenes/unified_spheres/2pointlights/starball.x3dv
+rtsgRTremoteTest scenes/unified_spheres/2pointlights/scalar_whitted.x3dv
+rtsgRTremoteTest scenes/unified_spheres/2pointlights/whitted.x3dv
+rtsgRTremoteTest scenes/unified_spheres/2pointlights/scalar_wood.x3dv
+rtsgRTremoteTest scenes/unified_spheres/2pointlights/wood.x3dv
+echo ""
+echo "TESTING OF SHADERS FINISHED!"
+echo ""

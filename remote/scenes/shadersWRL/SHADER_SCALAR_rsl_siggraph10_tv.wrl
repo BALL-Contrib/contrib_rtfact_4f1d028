@@ -1,0 +1,11 @@
+#VRML V2.0 utf8
+
+PackagedShader {
+    exposedField SFBool packetize FALSE
+    exposedField SFBool specialize TRUE
+    exposedField SFBool syncParams TRUE
+    
+    exposedField SFColor c 1 1 1
+
+    url "rtfact:AnySL:rsl_siggraph10_tv.bc"
+}

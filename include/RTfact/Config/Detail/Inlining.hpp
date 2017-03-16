@@ -1,0 +1,230 @@
+/* 
+ *  Inlining.hpp
+ *
+ *  RTfact - Real-Time Ray Tracing Library
+ *
+ *  Copyright (C) 2008  Saarland University
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ *  Created on: 2008-11-02 21:38:37 +0100
+ *  Author(s): Iliyan Georgiev
+ */
+ 
+ #ifndef RTFACT__INLINING_HPP
+#define RTFACT__INLINING_HPP
+
+#if defined(RTFACT_COMPILER_MSVC) || defined(RTFACT_COMPILER_INTEL)
+#   define RTFACT_INLINE __inline
+#else
+#   define RTFACT_INLINE inline
+#endif
+
+//#define RTFACT_NO_FORCE_INLINE
+
+#if defined(RTFACT_NO_FORCE_INLINE)
+#   define RTFACT_FORCE_INLINE RTFACT_INLINE
+#elif defined(RTFACT_COMPILER_MSVC) || defined(RTFACT_COMPILER_INTEL)
+#   define RTFACT_FORCE_INLINE __forceinline
+#elif defined(RTFACT_COMPILER_GCC)
+#   define RTFACT_FORCE_INLINE inline __attribute__((always_inline))
+#else
+#   define RTFACT_FORCE_INLINE RTFACT_INLINE
+#endif
+
+#pragma region Basic and utility components
+
+#if defined(RTFACT_SSE_NO_INLINE)
+#   define RTFACT_SSE_INLINE
+#elif defined(RTFACT_SSE_NO_FORCE_INLINE)
+#   define RTFACT_SSE_INLINE RTFACT_INLINE
+#else
+#   define RTFACT_SSE_INLINE RTFACT_FORCE_INLINE
+#endif
+
+#if defined(RTFACT_PACKET_NO_INLINE)
+#   define RTFACT_PACKET_INLINE
+#elif defined(RTFACT_PACKET_NO_FORCE_INLINE)
+#   define RTFACT_PACKET_INLINE RTFACT_INLINE
+#else
+#   define RTFACT_PACKET_INLINE RTFACT_FORCE_INLINE
+#endif
+
+#if defined(RTFACT_VEC2F_NO_INLINE)
+#   define RTFACT_VEC2F_INLINE
+#elif defined(RTFACT_VEC2F_NO_FORCE_INLINE)
+#   define RTFACT_VEC2F_INLINE RTFACT_INLINE
+#else
+#   define RTFACT_VEC2F_INLINE RTFACT_FORCE_INLINE
+#endif
+
+#if defined(RTFACT_VEC3F_NO_INLINE)
+#   define RTFACT_VEC3F_INLINE
+#elif defined(RTFACT_VEC3F_NO_FORCE_INLINE)
+#   define RTFACT_VEC3F_INLINE RTFACT_INLINE
+#else
+#   define RTFACT_VEC3F_INLINE RTFACT_FORCE_INLINE
+#endif
+
+#if defined(RTFACT_BIT_MASK_NO_INLINE)
+#   define RTFACT_BIT_MASK_INLINE
+#elif defined(RTFACT_BIT_MASK_NO_FORCE_INLINE)
+#   define RTFACT_BIT_MASK_INLINE RTFACT_INLINE
+#else
+#   define RTFACT_BIT_MASK_INLINE RTFACT_FORCE_INLINE
+#endif
+
+#if defined(RTFACT_MATH_NO_INLINE)
+#   define RTFACT_MATH_INLINE
+#elif defined(RTFACT_MATH_NO_FORCE_INLINE)
+#   define RTFACT_MATH_INLINE RTFACT_INLINE
+#else
+#   define RTFACT_MATH_INLINE RTFACT_FORCE_INLINE
+#endif
+
+#if defined(RTFACT_CONTAINER_NO_INLINE)
+#   define RTFACT_CONTAINER_INLINE
+#elif defined(RTFACT_CONTAINER_NO_FORCE_INLINE)
+#   define RTFACT_CONTAINER_INLINE RTFACT_INLINE
+#else
+#   define RTFACT_CONTAINER_INLINE RTFACT_FORCE_INLINE
+#endif
+
+#pragma endregion // Basic and utility components
+
+#pragma region Ray tracing and rendering components
+
+#if defined(RTFACT_PRIMITIVE_NO_INLINE)
+#   define RTFACT_PRIMITIVE_INLINE
+#elif defined(RTFACT_PRIMITIVE_NO_FORCE_INLINE)
+#   define RTFACT_PRIMITIVE_INLINE RTFACT_INLINE
+#else
+#   define RTFACT_PRIMITIVE_INLINE RTFACT_FORCE_INLINE
+#endif
+
+#if defined(RTFACT_CAMERA_NO_INLINE)
+#   define RTFACT_CAMERA_INLINE
+#elif defined(RTFACT_CAMERA_NO_FORCE_INLINE)
+#   define RTFACT_CAMERA_INLINE RTFACT_INLINE
+#else
+#   define RTFACT_CAMERA_INLINE RTFACT_FORCE_INLINE
+#endif
+
+#if defined(RTFACT_FRAMEBUFFER_NO_INLINE)
+#   define RTFACT_FRAMEBUFFER_INLINE
+#elif defined(RTFACT_FRAMEBUFFER_NO_FORCE_INLINE)
+#   define RTFACT_FRAMEBUFFER_INLINE RTFACT_INLINE
+#else
+#   define RTFACT_FRAMEBUFFER_INLINE RTFACT_FORCE_INLINE
+#endif
+
+#if defined(RTFACT_INTEGRATOR_NO_INLINE)
+#   define RTFACT_INTEGRATOR_INLINE
+#elif defined(RTFACT_INTEGRATOR_NO_FORCE_INLINE)
+#   define RTFACT_INTEGRATOR_INLINE RTFACT_INLINE
+#else
+#   define RTFACT_INTEGRATOR_INLINE RTFACT_FORCE_INLINE
+#endif
+
+#if defined(RTFACT_INTERSECTOR_NO_INLINE)
+#   define RTFACT_INTERSECTOR_INLINE
+#elif defined(RTFACT_INTERSECTOR_NO_FORCE_INLINE)
+#   define RTFACT_INTERSECTOR_INLINE RTFACT_INLINE
+#else
+#   define RTFACT_INTERSECTOR_INLINE RTFACT_FORCE_INLINE
+#endif
+
+#if defined(RTFACT_LIGHT_NO_INLINE)
+#   define RTFACT_LIGHT_INLINE
+#elif defined(RTFACT_LIGHT_NO_FORCE_INLINE)
+#   define RTFACT_LIGHT_INLINE RTFACT_INLINE
+#else
+#   define RTFACT_LIGHT_INLINE RTFACT_FORCE_INLINE
+#endif
+
+#if defined(RTFACT_APPEARANCE_NO_INLINE)
+#   define RTFACT_APPEARANCE_INLINE
+#elif defined(RTFACT_APPEARANCE_NO_FORCE_INLINE)
+#   define RTFACT_APPEARANCE_INLINE RTFACT_INLINE
+#else
+#   define RTFACT_APPEARANCE_INLINE RTFACT_FORCE_INLINE
+#endif
+
+#if defined(RTFACT_PIXEL_SAMPLER_NO_INLINE)
+#   define RTFACT_PIXEL_SAMPLER_INLINE
+#elif defined(RTFACT_PIXEL_SAMPLER_NO_FORCE_INLINE)
+#   define RTFACT_PIXEL_SAMPLER_INLINE RTFACT_INLINE
+#else
+#   define RTFACT_PIXEL_SAMPLER_INLINE RTFACT_FORCE_INLINE
+#endif
+
+#if defined(RTFACT_IMAGE_SAMPLER_NO_INLINE)
+#   define RTFACT_IMAGE_SAMPLER_INLINE
+#elif defined(RTFACT_IMAGE_SAMPLER_NO_FORCE_INLINE)
+#   define RTFACT_IMAGE_SAMPLER_INLINE RTFACT_INLINE
+#else
+#   define RTFACT_IMAGE_SAMPLER_INLINE RTFACT_FORCE_INLINE
+#endif
+
+#if defined(RTFACT_TEXTURE_NO_INLINE)
+#   define RTFACT_TEXTURE_INLINE
+#elif defined(RTFACT_TEXTURE_NO_FORCE_INLINE)
+#   define RTFACT_TEXTURE_INLINE RTFACT_INLINE
+#else
+#   define RTFACT_TEXTURE_INLINE RTFACT_FORCE_INLINE
+#endif
+
+#if defined(RTFACT_IMAGE_NO_INLINE)
+#   define RTFACT_IMAGE_INLINE
+#elif defined(RTFACT_IMAGE_NO_FORCE_INLINE)
+#   define RTFACT_IMAGE_INLINE RTFACT_INLINE
+#else
+#   define RTFACT_IMAGE_INLINE RTFACT_FORCE_INLINE
+#endif
+
+#if defined(RTFACT_RAY_PACKET_NO_INLINE)
+#   define RTFACT_RAY_PACKET_INLINE
+#elif defined(RTFACT_RAY_PACKET_NO_FORCE_INLINE)
+#   define RTFACT_RAY_PACKET_INLINE RTFACT_INLINE
+#else
+#   define RTFACT_RAY_PACKET_INLINE RTFACT_FORCE_INLINE
+#endif
+
+#if defined(RTFACT_PARTICLE_GENERATOR_NO_INLINE)
+#   define RTFACT_PARTICLE_GENERATOR_INLINE
+#elif defined(RTFACT_PARTICLE_GENERATOR_NO_FORCE_INLINE)
+#   define RTFACT_PARTICLE_GENERATOR_INLINE RTFACT_INLINE
+#else
+#   define RTFACT_PARTICLE_GENERATOR_INLINE RTFACT_FORCE_INLINE
+#endif
+
+#if defined(RTFACT_PARTICLE_STORAGE_NO_INLINE)
+#   define RTFACT_PARTICLE_STORAGE_INLINE
+#elif defined(RTFACT_PARTICLE_STORAGE_NO_FORCE_INLINE)
+#   define RTFACT_PARTICLE_STORAGE_INLINE RTFACT_INLINE
+#else
+#   define RTFACT_PARTICLE_STORAGE_INLINE RTFACT_FORCE_INLINE
+#endif
+
+#if defined(RTFACT_PARTICLE_FILTER_STORAGE_INLINE)
+#elif defined(RTFACT_PARTICLE_FILTER_NO_FORCE_INLINE)
+#   define RTFACT_PARTICLE_FILTER_INLINE RTFACT_INLINE
+#else
+#   define RTFACT_PARTICLE_FILTER_INLINE RTFACT_FORCE_INLINE
+#endif
+
+#pragma endregion // Ray tracing and rendering components
+
+#endif // RTFACT__INLINING_HPP

@@ -1,0 +1,37 @@
+#X3D V3.0 utf8
+
+PROFILE Full
+
+Viewpoint {
+  position 0 0 2.5
+  fieldOfView 0.785398
+}
+
+PointLight {
+   location 0.5 1.5 3.5
+   color 1 1 1
+}
+
+Transform {
+   children Shape {
+      appearance Appearance {
+     shaders PackagedShader {
+        field SFBool vectorize TRUE
+        field SFBool specialize TRUE
+
+         #constants for phong shader
+         exposedField SFColor diffuseColor 1.0 0.2 0.0
+         exposedField SFColor ambientIntensity 0.1 0.3 0.4
+         exposedField SFColor specularColor 1.0 1.0 1.0
+         exposedField SFFloat shininess 50.0
+         exposedField SFBool useVertexColor FALSE
+         exposedField SFBool isSpecular TRUE
+
+         url "rtfact:AnySL:PhongShader.bc"
+	 #url "rtfact:JIT:PhongShader.bc"
+      }
+      material Material { }
+    }
+    geometry Sphere {}
+  }
+}

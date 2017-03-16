@@ -1,0 +1,39 @@
+#X3D V3.0 utf8
+
+PROFILE Full
+
+Viewpoint {
+  position 0 0 2.5
+  fieldOfView 0.785398
+}
+
+PointLight {
+   location 0.5 1.5 3.5
+   color 1 1 1
+}
+
+Transform {
+  children Shape {
+    appearance Appearance {
+      shaders PackagedShader {
+        field SFBool vectorize TRUE
+        field SFBool specialize TRUE
+        
+        exposedField SFFloat Km 1.0
+        exposedField SFFloat power 2.0
+        exposedField SFFloat frequency 1.0
+        exposedField SFFloat maxoctaves 6.0
+        
+        exposedField SFColor ambientColor 0.1 0.1 0.1
+        exposedField SFColor diffuseColor 0.3 0.2 0.1
+        exposedField SFColor specularColor 0.6 0.4 0.2
+        exposedField SFFloat kg 0.9
+        
+        url "rtfact:AnySL:DentedShader.bc"
+	#url "rtfact:JIT:DentedShader.bc"
+      }
+      material Material { }
+    }
+    geometry Sphere {}
+  }
+}

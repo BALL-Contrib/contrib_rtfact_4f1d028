@@ -1,0 +1,43 @@
+#X3D V3.0 utf8
+
+PROFILE Full
+
+#location in front of wall (only one side of box visible, nothing else)
+Viewpoint {
+  position -3.80436, 0.316717, 2.27358
+  orientation -0.11685074350613091 -0.991871457347013 -0.050367805614078935 0.8199078371676376
+#  orientation -0.17789923128322138 -0.9796568648563595 0.09286705900721282 0.822572968869039
+  fieldOfView 0.785398
+}
+
+DEF PointLight1 PointLight {
+   location 0 0 3
+   color 1 1 1
+}
+
+#DEF PointLight2 PointLight {
+#  location 0 0 6
+#  color 1 1 1
+#}
+
+Transform {
+   #scale 4 4 10
+   scale  4 4 4
+   children Shape {
+      appearance Appearance {
+	 shaders DEF SHADER1 PackagedShader {
+	    exposedField SFBool packetize FALSE
+	    exposedField SFBool specialize TRUE
+	    exposedField SFBool syncParams TRUE
+
+		#url "rtfact:AnySL:rsl_parquet_plank.bc"
+		url "rtfact:AnySL:rsl_parquet_plank_aa.bc"
+
+	 }
+	 material Material { }
+      }
+      geometry Box {
+      }
+   }
+}
+

@@ -1,0 +1,82 @@
+#X3D V3.0 utf8
+
+PROFILE Full
+
+Viewpoint {
+  position 0.0 0.4 0.3
+  orientation 0.0 0.0 0.0 0.0
+  fieldOfView 0.785398
+}
+
+
+PointLight {
+   location 0.3 0.7 0.3
+   color 1 1 1
+}
+PointLight {
+   location 0.0 0.5 0.2
+   color 0.5 0.5 0.5
+}
+PointLight {
+   location 0.0 100.0 0.0
+   color 0.5 0.5 0.5
+}
+
+
+Transform {
+   translation 0 0.4 0
+   scale 0.1 0.1 0.1
+   children Shape {
+      appearance Appearance {
+     shaders PackagedShader {
+        field SFBool vectorize TRUE
+        field SFBool specialize TRUE
+         
+         #constants for mandelbrot
+	 exposedField SFFloat translateX 0
+	 exposedField SFFloat translateY 0
+         exposedField SFFloat scale 1
+         exposedField SFFloat min_cx -2
+         exposedField SFFloat min_cy -1
+	 exposedField SFFloat pa_x 3
+         exposedField SFFloat pa_y 2.25
+         exposedField SFInt32 maxIterations 80
+         exposedField SFFloat maxSquaredValue 100000
+	 exposedField SFBool  colored TRUE
+         
+	 url "rtfact:AnySL:MandelbrotShader.bc"
+	 #url "rtfact:JIT:MandelbrotShader.bc"
+      }
+      material Material { }
+    }
+    geometry Sphere {}
+  }
+}
+
+Transform {
+   scale 7 4 7
+   #scale  4 4 4
+   translation 0 -4 0
+   children Shape {
+      appearance Appearance {
+     shaders DEF PP_MAT PackagedShader {
+        field SFBool vectorize TRUE
+
+        exposedField SFFloat Kd 0.5
+        exposedField SFFloat Ka 0.1
+        exposedField SFFloat frequency 16
+        exposedField SFFloat s_scale 1
+        exposedField SFFloat t_scale 1
+
+        exposedField SFColor blackcolor 0 0 0
+        exposedField SFColor whitecolor 1 1 1
+
+        url "rtfact:JIT:CheckerShader.bc"
+
+     }
+     material Material { }
+      }
+      geometry Box {
+      }
+   }
+}
