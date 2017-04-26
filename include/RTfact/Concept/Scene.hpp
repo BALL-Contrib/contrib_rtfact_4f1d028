@@ -53,10 +53,10 @@ public:
 
 protected:
 
-    typedef HashMap<const void* const,
+	typedef HashMap<const void*,
                     boost::intrusive_ptr<RenderStruct> > t_RenderStructMap;
 
-    HashMap<const void* const,
+	HashMap<const void*,
             boost::intrusive_ptr<RenderStruct> > mRenderStructs;
 
 public:

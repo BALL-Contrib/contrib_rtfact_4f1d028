@@ -93,7 +93,7 @@ SET(OPTIONAL_LIBRARIES "")
 
 FIND_PACKAGE( Boost 1.43 REQUIRED )
 FIND_PACKAGE( TBB )
-FIND_PACKAGE( SDL )
+#FIND_PACKAGE( SDL )
 FIND_PACKAGE( OpenGL )
 FIND_PACKAGE( GLEW )
 FIND_PACKAGE( Cg )
@@ -284,7 +284,7 @@ INCLUDE_DIRECTORIES( ./include )
 
 INCLUDE_DIRECTORIES( ${Boost_INCLUDE_DIRS} )
 INCLUDE_DIRECTORIES( ${TBB_INCLUDE_DIR} )
-INCLUDE_DIRECTORIES( ${SDL_INCLUDE_DIR} )
+#INCLUDE_DIRECTORIES( ${SDL_INCLUDE_DIR} )
 INCLUDE_DIRECTORIES( ${OpenGL_INCLUDE_DIRS} )
 INCLUDE_DIRECTORIES( ${GLEW_INCLUDE_DIR} )
 INCLUDE_DIRECTORIES( ${OPTIONAL_LIB_INCLUDE} )
@@ -292,7 +292,7 @@ INCLUDE_DIRECTORIES( ${OPTIONAL_LIB_INCLUDE} )
 
 LINK_DIRECTORIES( ${Boost_LIBRARY_DIRS} )
 LINK_DIRECTORIES( ${TBB_LIBRARY_DIRS} )
-LINK_DIRECTORIES( ${SDL_LIBRARY_DIRS} )
+#LINK_DIRECTORIES( ${SDL_LIBRARY_DIRS} )
 LINK_DIRECTORIES( ${OpenGL_LIBRARY_DIRS} )
 LINK_DIRECTORIES( ${GLEW_LIBRARY_DIR} )
 LINK_DIRECTORIES( ${CMAKE_LIBRARY_OUTPUT_DIRECTORY} )
@@ -328,24 +328,24 @@ ADD_LIBRARY(RTfactRTpie SHARED ${RTfactRTpie_SOURCE_FILES})
 TARGET_LINK_LIBRARIES(RTfactRTpie ${TBB_LIBRARIES} )
 SET_TARGET_COMPILE_DEFINITIONS(RTfactRTpie LIB)
 
-ADD_EXECUTABLE(RTpieDemo ${RTfactRTpieDemo_SOURCE_FILES})
-TARGET_LINK_LIBRARIES(RTpieDemo ${TBB_LIBRARIES}
-                                       ${SDL_LIBRARIES}
-                                       ${OPENGL_LIBRARIES}
-                                       ${GLEW_LIBRARIES}
-                                       RTfactRTpie)
-SET_TARGET_COMPILE_DEFINITIONS(RTpieDemo DEMO)
+#ADD_EXECUTABLE(RTpieDemo ${RTfactRTpieDemo_SOURCE_FILES})
+#TARGET_LINK_LIBRARIES(RTpieDemo ${TBB_LIBRARIES}
+#				        ${SDL_LIBRARIES}
+#                                       ${OPENGL_LIBRARIES}
+#                                       ${GLEW_LIBRARIES}
+#                                       RTfactRTpie)
+#SET_TARGET_COMPILE_DEFINITIONS(RTpieDemo DEMO)
 
 #RTfactRawDemo uses windows-only gdiplus libraries
-IF(WIN32)
-  ADD_EXECUTABLE(RTfactRawDemo ${RTfactRawDemo_SOURCE_FILES})
-  SET_PRECOMPILED_HEADER(RTfactRawDemo ./demos/RTfactRawDemo/src/Precompiled.hpp ./demos/RTfactRawDemo/src/Precompiled.cpp)
-  TARGET_LINK_LIBRARIES(RTfactRawDemo   ${TBB_LIBRARIES}
-                                        ${SDL_LIBRARIES}
-                                        ${OPENGL_LIBRARIES}
-                                        ${GLEW_LIBRARIES}
-                                        gdiplus.lib)
-ENDIF(WIN32)
+#IF(WIN32)
+#  ADD_EXECUTABLE(RTfactRawDemo ${RTfactRawDemo_SOURCE_FILES})
+#  SET_PRECOMPILED_HEADER(RTfactRawDemo ./demos/RTfactRawDemo/src/Precompiled.hpp ./demos/RTfactRawDemo/src/Precompiled.cpp)
+#  TARGET_LINK_LIBRARIES(RTfactRawDemo   ${TBB_LIBRARIES}
+#					 ${SDL_LIBRARIES}
+#                                        ${OPENGL_LIBRARIES}
+#                                        ${GLEW_LIBRARIES}
+#                                        gdiplus.lib)
+#ENDIF(WIN32)
 
 IF(RTFACT_REMOTE_HAVE_ANYSL)
   #NOTE: some paths have to be in "native format" (these that are executed in native environment, COMMAND

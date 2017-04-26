@@ -28,25 +28,25 @@
 
 #include <RTfact/Config/Common.hpp>
 
-#if defined(RTFACT_COMPILER_GCC) && RTFACT_COMPILER_GCC_VERSION >= 40300 && \
-    defined(__INTEL_COMPILER) && __INTEL_COMPILER >= 1200
-#   include <tr1/unordered_map>
+#if defined RTFACT_COMPILER_CLANG
+#   include <unordered_map>
+#elif defined(RTFACT_COMPILER_GCC) && RTFACT_COMPILER_GCC_VERSION >= 40300 && defined(__INTEL_COMPILER) && __INTEL_COMPILER >= 1200
+#   include <unordered_map>
 #elif defined(RTFACT_COMPILER_GCC) && RTFACT_COMPILER_GCC_VERSION > 30200
 #   include <ext/hash_map>
 #elif defined(RTFACT_COMPILER_MSVC)
-#   include <hash_map>
+#   include <unordered_map>
 #else
 #   error Please specify the details of hash_map specific to your compiler
 #endif
 
-#if defined(RTFACT_COMPILER_GCC) && RTFACT_COMPILER_GCC_VERSION >= 40300 && \
-    defined(__INTEL_COMPILER) && __INTEL_COMPILER >= 1200
-
+#if defined RTFACT_COMPILER_CLANG
 #   define RTFACT__HASH_MAP_CLASS unordered_map
-#   define RTFACT__HASH_MAP_BASE_NAMESPACE std::tr1
-
+#   define RTFACT__HASH_MAP_BASE_NAMESPACE std
+#elif defined(RTFACT_COMPILER_GCC) && RTFACT_COMPILER_GCC_VERSION >= 40300 && defined(__INTEL_COMPILER) && __INTEL_COMPILER >= 1200
+#   define RTFACT__HASH_MAP_CLASS unordered_map
+#   define RTFACT__HASH_MAP_BASE_NAMESPACE std
 #elif defined(RTFACT_COMPILER_GCC) && RTFACT_COMPILER_GCC_VERSION > 30200
-
 #   define RTFACT__HASH_MAP_BASE_NAMESPACE __gnu_cxx
 #   define RTFACT__HASH_MAP_CLASS hash_map
 
@@ -119,10 +119,8 @@
     }
 
 #elif defined(RTFACT_COMPILER_MSVC)
-
-#   define RTFACT__HASH_MAP_BASE_NAMESPACE stdext
-#   define RTFACT__HASH_MAP_CLASS hash_map
-
+#   define RTFACT__HASH_MAP_BASE_NAMESPACE std
+#   define RTFACT__HASH_MAP_CLASS unordered_map
 #endif
 
 RTFACT_NAMESPACE_BEGIN
