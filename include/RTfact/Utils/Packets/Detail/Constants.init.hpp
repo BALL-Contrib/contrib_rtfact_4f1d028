@@ -75,7 +75,7 @@ namespace Detail {
 
     // Used in Matrix4f.hpp
     const RTFACT_ALIGN(16) int32 _Sign_PNNP[4] =
-        { 0x00000000, 0x80000000, 0x80000000, 0x00000000 };
+	{ static_cast<int32>(0x00000000), static_cast<int32>(0x80000000), static_cast<int32>(0x80000000), static_cast<int32>(0x00000000) };
 
 } // namespace Detail
 
